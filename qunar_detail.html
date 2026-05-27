@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>去哪儿网·去呼呼民宿系统｜Cici Zhang</title>
+<style>
+:root{--bg:#f3eee5;--card:#fbf7ef;--ink:#121212;--muted:#686057;--line:#d7cbbc;--orange:#ff5c24;--orange2:#ff9a55;--black:#111}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:14px}
+a{text-decoration:none;color:inherit}
+
+.nav{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line);backdrop-filter:blur(20px);background:rgba(243,238,229,.9)}
+.nav-inner{width:min(1060px,92vw);margin:auto;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;letter-spacing:-.03em;font-size:15px;display:flex;align-items:center;gap:6px}
+.logo-dot{width:7px;height:7px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--muted);padding:7px 14px;border:1px solid var(--line);border-radius:4px;transition:all .2s}
+.back-btn:hover{color:var(--ink);border-color:var(--ink)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+
+.wrap{width:min(1060px,92vw);margin:auto;padding-bottom:80px}
+
+/* HERO */
+.detail-hero{padding:52px 0 44px;border-bottom:1px solid var(--line)}
+.detail-badge{display:inline-flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:800;padding:4px 12px;border-radius:999px}
+.badge.type{background:rgba(255,92,36,.12);color:var(--orange)}
+.badge.dark{background:#1a1a1a;color:rgba(255,255,255,.6)}
+.detail-hero h1{font-size:48px;line-height:1.05;letter-spacing:-.05em;font-weight:950;margin-bottom:16px}
+.detail-hero h1 em{font-style:normal;color:var(--orange)}
+.detail-lead{font-size:14px;color:var(--muted);max-width:680px;line-height:1.8}
+.stats-row{display:flex;gap:28px;margin-top:28px;flex-wrap:wrap}
+.stat-item strong{font-size:32px;font-weight:950;display:block;line-height:1;color:var(--orange)}
+.stat-item span{font-size:11px;color:var(--muted);margin-top:4px;display:block}
+
+/* SECTION */
+section{padding:40px 0;border-bottom:1px solid var(--line)}
+.sec-label{color:var(--orange);font-size:11px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sec-label::before{content:"";width:18px;height:2px;background:var(--orange);border-radius:999px}
+.sec-title{font-size:24px;font-weight:950;letter-spacing:-.04em;margin-bottom:22px}
+
+/* CARDS */
+.cards-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cards-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;transition:box-shadow .22s,transform .22s}
+.card:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(-2px)}
+.card-icon{font-size:22px;margin-bottom:12px}
+.card h3{font-size:14px;font-weight:900;margin-bottom:8px}
+.card p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.card.dark{background:var(--black);border-color:#2a2a2a}
+.card.dark h3{color:#fff}
+.card.dark p{color:#a89e94}
+
+/* IMAGE SECTION */
+.img-section{padding:40px 0;border-bottom:1px solid var(--line)}
+.img-wrap{border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.1)}
+.img-wrap img{width:100%;display:block}
+.img-caption{font-size:11px;color:var(--muted);text-align:center;margin-top:12px;letter-spacing:.03em}
+
+/* FADE */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.in{opacity:1;transform:none}
+
+@media(max-width:760px){
+  .detail-hero h1{font-size:34px}
+  .cards-2col,.cards-3col{grid-template-columns:1fr}
+  .stats-row{gap:18px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Cici Zhang<div class="logo-dot"></div></div>
+    <a class="back-btn" href="cici_pm_portfolio_bold_black_orange.html">← 返回作品集</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="detail-hero">
+    <div class="detail-badge">
+      <span class="badge dark">05</span>
+      <span class="badge type">UI/UX</span>
+      <span class="badge type">活动运营</span>
+      <span class="badge type">去哪儿网</span>
+    </div>
+    <h1>去呼呼<br><em>品牌与系统设计</em></h1>
+    <p class="detail-lead">去哪儿网旗下非标准住宿品牌「去呼呼」的品牌形象与客栈后台系统体验设计。覆盖公寓频道页面视觉规范、活动设计及品牌推广素材，以年轻化、有温度的设计语言提升用户对「去呼呼公寓」品牌的认知与转化。</p>
+    <div class="stats-row">
+      <div class="stat-item"><strong>UI/UX</strong><span>设计方向</span></div>
+      <div class="stat-item"><strong>酒旅</strong><span>业务方向</span></div>
+    </div>
+  </div>
+
+  <!-- 背景 -->
+  <section class="fade-in">
+    <div class="sec-label">Background</div>
+    <div class="sec-title">项目背景</div>
+    <div class="cards-2col">
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <h3>业务背景</h3>
+        <p>去哪儿网旗下非标准住宿品牌「去呼呼」主打年轻化用户市场，需要建立有辨识度的品牌形象体系，同时搭建供房东使用的客栈后台管理系统，提升品牌认知度与民宿主入驻体验。</p>
+      </div>
+      <div class="card dark">
+        <div class="card-icon">🎯</div>
+        <h3>设计目标</h3>
+        <p style="color:#a89e94">建立去呼呼品牌视觉规范，覆盖公寓频道页面、活动设计及推广素材；同时设计客栈后台管理系统，以年轻化有温度的设计语言提升品牌认知与用户转化。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 设计展示 -->
+  <div class="img-section fade-in">
+    <div class="sec-label">Design Showcase</div>
+    <div class="sec-title" style="margin-bottom:20px">设计作品展示</div>
+    <div class="img-wrap">
+      <img src="qunar_work.jpg" alt="去哪儿网·呼呼公寓设计作品" />
+    </div>
+    <div class="img-caption">去哪儿网 · 去呼呼 · 品牌形象与客栈后台系统设计</div>
+  </div>
+
+  <!-- 我的角色 -->
+  <section class="fade-in">
+    <div class="sec-label">My Role</div>
+    <div class="sec-title">核心贡献</div>
+    <div class="cards-3col">
+      <div class="card fade-in">
+        <div class="card-icon">🎨</div>
+        <h3>品牌形象设计</h3>
+        <p>主导去呼呼品牌视觉规范建立，涵盖色彩、字体、图形语言体系，覆盖公寓频道页、活动页及品牌推广素材，确保多场景下的品牌一致性。</p>
+      </div>
+      <div class="card fade-in">
+        <div class="card-icon">🖥️</div>
+        <h3>客栈后台系统设计</h3>
+        <p>负责去呼呼客栈后台管理系统的交互与视觉设计，梳理房东侧核心流程，优化信息架构，提升民宿主的操作效率与使用体验。</p>
+      </div>
+      <div class="card fade-in">
+        <div class="card-icon">🔐</div>
+        <h3>智能硬件与穿戴设计</h3>
+        <p>负责去呼呼智能门锁外观工业设计，包含电子锁按键布局、操作提示与交互规则设计；同步完成 iWatch 手环界面设计，实现手环一键感应开锁，探索软硬件一体化的智慧住宿体验。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div style="text-align:center;padding:26px 0;font-size:11px;color:#bbb">© 2025 Cici Zhang · 张秀娟 · All Rights Reserved</div>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

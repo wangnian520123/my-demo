@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>用友·营销云&U会员｜Cici Zhang</title>
+<style>
+:root{--bg:#f3eee5;--card:#fbf7ef;--ink:#121212;--muted:#686057;--line:#d7cbbc;--orange:#ff5c24;--orange2:#ff9a55;--black:#111}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:14px}
+a{text-decoration:none;color:inherit}
+
+.nav{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line);backdrop-filter:blur(20px);background:rgba(243,238,229,.9)}
+.nav-inner{width:min(1060px,92vw);margin:auto;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;letter-spacing:-.03em;font-size:15px;display:flex;align-items:center;gap:6px}
+.logo-dot{width:7px;height:7px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--muted);padding:7px 14px;border:1px solid var(--line);border-radius:4px;transition:all .2s}
+.back-btn:hover{color:var(--ink);border-color:var(--ink)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+
+.wrap{width:min(1060px,92vw);margin:auto;padding-bottom:80px}
+
+/* HERO */
+.detail-hero{padding:52px 0 44px;border-bottom:1px solid var(--line)}
+.detail-badge{display:inline-flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:800;padding:4px 12px;border-radius:999px}
+.badge.type{background:rgba(255,92,36,.12);color:var(--orange)}
+.badge.dark{background:#1a1a1a;color:rgba(255,255,255,.6)}
+.detail-hero h1{font-size:48px;line-height:1.05;letter-spacing:-.05em;font-weight:950;margin-bottom:16px}
+.detail-hero h1 em{font-style:normal;color:var(--orange)}
+.detail-lead{font-size:14px;color:var(--muted);max-width:680px;line-height:1.8}
+.stats-row{display:flex;gap:28px;margin-top:28px;flex-wrap:wrap}
+.stat-item strong{font-size:32px;font-weight:950;display:block;line-height:1;color:var(--orange)}
+.stat-item span{font-size:11px;color:var(--muted);margin-top:4px;display:block}
+
+/* SECTION */
+section{padding:40px 0;border-bottom:1px solid var(--line)}
+.sec-label{color:var(--orange);font-size:11px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sec-label::before{content:"";width:18px;height:2px;background:var(--orange);border-radius:999px}
+.sec-title{font-size:24px;font-weight:950;letter-spacing:-.04em;margin-bottom:22px}
+
+/* CARDS */
+.cards-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cards-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;transition:box-shadow .22s,transform .22s}
+.card:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(-2px)}
+.card-icon{font-size:22px;margin-bottom:12px}
+.card h3{font-size:14px;font-weight:900;margin-bottom:8px}
+.card p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.card.dark{background:var(--black);border-color:#2a2a2a}
+.card.dark h3{color:#fff}
+.card.dark p{color:#a89e94}
+
+/* TAB NAV */
+.tab-nav{display:flex;gap:10px;margin-bottom:0;border-bottom:2px solid var(--line);padding-bottom:0}
+.tab-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px 22px 16px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;transition:all .2s;border-radius:10px 10px 0 0}
+.tab-btn:hover{background:rgba(255,92,36,.05)}
+.tab-btn.active{border-bottom-color:var(--orange);background:rgba(255,92,36,.06)}
+.tab-icon{font-size:20px;line-height:1}
+.tab-name{font-size:14px;font-weight:900;color:var(--ink);transition:color .2s}
+.tab-btn.active .tab-name{color:var(--orange)}
+.tab-sub{font-size:10px;color:var(--muted);font-weight:600}
+.tab-content{background:var(--card);border:1px solid var(--line);border-top:none;border-radius:0 0 20px 20px;padding:32px}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:tab-in .3s ease}
+@keyframes tab-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tp-summary{font-size:14px;color:var(--muted);line-height:1.8;padding:14px 18px;background:rgba(255,92,36,.05);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;margin-bottom:24px}
+
+/* IMAGE */
+.img-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.09);margin-top:20px}
+.img-wrap img{width:100%;display:block}
+.img-caption{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;letter-spacing:.03em}
+
+/* FADE */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.in{opacity:1;transform:none}
+
+@media(max-width:760px){
+  .detail-hero h1{font-size:34px}
+  .cards-2col,.cards-3col{grid-template-columns:1fr}
+  .stats-row{gap:18px}
+  .tab-btn{padding:10px 14px 12px}
+  .tab-sub{display:none}
+  .tab-content{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Cici Zhang<div class="logo-dot"></div></div>
+    <a class="back-btn" href="cici_pm_portfolio_bold_black_orange.html">← 返回作品集</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="detail-hero">
+    <div class="detail-badge">
+      <span class="badge dark">06</span>
+      <span class="badge type">交互设计</span>
+      <span class="badge type">B端系统</span>
+      <span class="badge type">用友网络</span>
+    </div>
+    <h1>营销云 &amp; <em>U 会员</em></h1>
+    <p class="detail-lead">用友网络旗下零售云营销中台与会员体系的交互设计，覆盖营销活动配置、会员权益管理、用户分层运营等复杂 C 端/B 端场景，统一多产品线设计语言，提升业务使用效率。</p>
+    <div class="stats-row">
+      <div class="stat-item"><strong>2015</strong><span>入职年份</span></div>
+      <div class="stat-item"><strong>营销云</strong><span>会员运营 · CRM</span></div>
+      <div class="stat-item"><strong>4年</strong><span>用友任职时长</span></div>
+    </div>
+  </div>
+
+  <!-- Tab 切换 -->
+  <section class="fade-in" style="border-bottom:none">
+    <div class="sec-label">Project Showcase</div>
+    <div class="sec-title">两大核心项目</div>
+
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="retail">
+        <span class="tab-icon">🛒</span>
+        <span class="tab-name">零售云·营销云</span>
+        <span class="tab-sub">渠道中台设计</span>
+      </button>
+      <button class="tab-btn" data-tab="member">
+        <span class="tab-icon">👑</span>
+        <span class="tab-name">U 会员</span>
+        <span class="tab-sub">会员体系设计</span>
+      </button>
+    </div>
+
+    <div class="tab-content">
+
+      <!-- 零售云 -->
+      <div class="tab-panel active" id="tab-retail">
+        <div class="tp-summary">负责用友零售云渠道中台的交互设计，覆盖营销活动配置、商品管理、订单流转等核心 B 端场景，统一全线产品设计语言。</div>
+        <div class="cards-2col">
+          <div class="card">
+<div class="card-icon">🎯</div>
+<h3>项目背景</h3>
+<p>用友致力于以大数据与互联网技术实现线上/线下全渠道融合，为消费者打造无缝连接的数字化购买体验。这是一种新零售思维方式的转变——将更好的服务、个性化产品和技术创新带给每一位消费者。</p>
+          </div>
+          <div class="card dark">
+            <div class="card-icon">✦</div>
+            <h3 style="color:#fff">核心贡献</h3>
+            <p style="color:#a89e94">负责营销云 POS 零售收端系统、智能机器人引导系统及友零售 APP 的交互设计，覆盖线上/线下多终端场景，助力用友新零售全渠道数字化体验落地。</p>
+          </div>
+        </div>
+        <div class="img-wrap">
+          <img src="yonyou_retail.jpg" alt="用友零售云·营销云设计作品" />
+        </div>
+        <div class="img-caption">用友网络 · 零售云 · 营销云 · 交互设计作品集</div>
+      </div>
+
+      <!-- U 会员 -->
+      <div class="tab-panel" id="tab-member">
+        <div class="tp-summary">负责用友 U 会员产品的交互设计，覆盖会员权益配置、用户分层运营、积分体系等核心场景，帮助商家高效管理会员生命周期。</div>
+        <div class="cards-2col">
+          <div class="card">
+            <div class="card-icon">🏅</div>
+            <h3>项目背景</h3>
+            <p>商家会员体系复杂，权益配置、等级规则、积分兑换等功能分散，操作路径长，配置成本高。需要通过合理的信息架构与交互设计，降低商家使用门槛，提升会员运营效率。</p>
+          </div>
+          <div class="card dark">
+            <div class="card-icon">📈</div>
+            <h3 style="color:#fff">核心贡献</h3>
+            <p style="color:#a89e94">主导 U 会员产品交互设计，梳理会员全生命周期业务流程，设计分层权益配置与积分兑换模块；建立会员体系相关的设计规范，与研发紧密协作，保障高还原度落地。</p>
+          </div>
+        </div>
+        <div class="img-wrap">
+          <img src="yonyou_member.jpg" alt="用友U会员设计作品" />
+        </div>
+        <div class="img-caption">用友网络 · U 会员 · 交互设计作品集</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div style="text-align:center;padding:26px 0;font-size:11px;color:#bbb">© 2025 Cici Zhang · 张秀娟 · All Rights Reserved</div>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + target).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

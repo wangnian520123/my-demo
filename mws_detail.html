@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MWS 设计规范体系｜Cici Zhang</title>
+<style>
+:root{--bg:#f3eee5;--card:#fbf7ef;--ink:#121212;--muted:#686057;--line:#d7cbbc;--orange:#ff5c24;--orange2:#ff9a55;--black:#111;--radius:22px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:14px}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line);backdrop-filter:blur(20px);background:rgba(243,238,229,.9)}
+.nav-inner{width:min(1060px,92vw);margin:auto;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;letter-spacing:-.03em;font-size:15px;display:flex;align-items:center;gap:6px}
+.logo-dot{width:7px;height:7px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--muted);padding:7px 14px;border:1px solid var(--line);border-radius:4px;transition:all .2s}
+.back-btn:hover{color:var(--ink);border-color:var(--ink)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+
+.wrap{width:min(1060px,92vw);margin:auto;padding-bottom:80px}
+
+/* HERO */
+.detail-hero{padding:56px 0 48px;border-bottom:1px solid var(--line)}
+.detail-badge{display:inline-flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:800;padding:4px 12px;border-radius:999px}
+.badge.type{background:rgba(255,92,36,.12);color:var(--orange)}
+.badge.dark{background:#1a1a1a;color:rgba(255,255,255,.6)}
+.detail-hero h1{font-size:52px;line-height:1;letter-spacing:-.06em;font-weight:950;margin-bottom:20px}
+.detail-hero h1 em{font-style:normal;color:var(--orange)}
+.detail-lead{font-size:15px;color:var(--muted);max-width:700px;line-height:1.8}
+.stats-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
+.stat-item strong{font-size:36px;font-weight:950;display:block;line-height:1;color:var(--orange)}
+.stat-item span{font-size:11px;color:var(--muted);margin-top:4px;display:block}
+
+/* SECTION */
+section{padding:40px 0;border-bottom:1px solid var(--line)}
+.sec-label{color:var(--orange);font-size:11px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sec-label::before{content:"";width:18px;height:2px;background:var(--orange);border-radius:999px}
+.sec-title{font-size:26px;font-weight:950;letter-spacing:-.04em;margin-bottom:24px}
+
+/* CARDS */
+.cards-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cards-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cards-4col{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;transition:box-shadow .22s,transform .22s}
+.card:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(-2px)}
+.card-icon{font-size:24px;margin-bottom:14px}
+.card h3{font-size:15px;font-weight:900;margin-bottom:10px}
+.card p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.card.dark{background:var(--black);color:#fff;border-color:#2a2a2a}
+.card.dark p{color:#a89e94}
+.card.dark h3{color:#fff}
+.card.highlight{border-color:var(--orange);background:rgba(255,92,36,.04)}
+
+/* PHASE */
+.phases{display:flex;flex-direction:column;gap:14px}
+.phase{border:1px solid var(--line);border-radius:18px;padding:24px 28px;background:var(--card);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;transition:box-shadow .22s}
+.phase:hover{box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.phase-num{font-size:11px;font-weight:950;color:var(--orange);background:rgba(255,92,36,.1);padding:4px 12px;border-radius:999px;white-space:nowrap;margin-top:3px}
+.phase h3{font-size:14px;font-weight:900;margin-bottom:6px}
+.phase p{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* FLOW */
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--black);border-radius:16px;padding:20px 24px;margin-top:4px}
+.flow-step{background:rgba(255,92,36,.2);border:1px solid rgba(255,92,36,.35);color:var(--orange2);padding:6px 16px;border-radius:999px;font-size:12px;font-weight:800}
+.flow-arrow{color:#666;font-size:14px}
+
+/* METRIC LIST */
+.metric-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+.m-item{background:rgba(255,92,36,.06);border:1px solid rgba(255,92,36,.15);border-radius:10px;padding:12px 16px;font-size:12px;color:var(--ink)}
+.m-item strong{color:var(--orange);font-weight:900;margin-right:4px}
+
+/* TAB NAV */
+.tab-nav{display:flex;gap:10px;margin-bottom:0;border-bottom:2px solid var(--line);padding-bottom:0}
+.tab-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px 22px 16px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;transition:all .2s;border-radius:10px 10px 0 0}
+.tab-btn:hover{background:rgba(255,92,36,.05)}
+.tab-btn.active{border-bottom-color:var(--orange);background:rgba(255,92,36,.06)}
+.tab-icon{font-size:20px;line-height:1}
+.tab-name{font-size:14px;font-weight:900;color:var(--ink);transition:color .2s}
+.tab-btn.active .tab-name{color:var(--orange)}
+.tab-sub{font-size:10px;color:var(--muted);font-weight:600}
+.tab-content{background:var(--card);border:1px solid var(--line);border-top:none;border-radius:0 0 20px 20px;padding:32px}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:tab-in .3s ease}
+@keyframes tab-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tp-summary{font-size:14px;color:var(--muted);line-height:1.8;padding:14px 18px;background:rgba(255,92,36,.05);border-left:3px solid var(--orange);border-radius:0 8px 8px 0}
+.tp-divider{height:1px;background:var(--line);margin:24px 0}
+.tp-block-title{font-size:13px;font-weight:900;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+
+/* COMPONENT ROW */
+.component-row{display:flex;flex-direction:column;gap:12px}
+.comp-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start;transition:box-shadow .2s}
+.comp-item:hover{box-shadow:0 6px 20px rgba(0,0,0,.07)}
+.comp-tag{display:inline-block;font-size:10px;font-weight:900;color:var(--orange);background:rgba(255,92,36,.1);padding:4px 12px;border-radius:999px;white-space:nowrap;text-align:center}
+.comp-title{font-size:14px;font-weight:900;margin-bottom:5px}
+.comp-item p{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* BEFORE/AFTER */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+.ba-card{border-radius:16px;padding:22px 24px;border:1px solid var(--line)}
+.ba-card.before{background:#f9f5f0;border-color:#e0d5c8}
+.ba-card.after{background:rgba(255,92,36,.04);border-color:rgba(255,92,36,.2)}
+.ba-label{font-size:10px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.ba-label.before-l{color:#999}
+.ba-label.after-l{color:var(--orange)}
+.ba-list{display:flex;flex-direction:column;gap:7px}
+.ba-item{font-size:12.5px;color:var(--muted);display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.ba-item.good{color:var(--ink)}
+.ba-item::before{content:"✗";color:#ccc;font-size:11px;flex-shrink:0;margin-top:1px}
+.ba-item.good::before{content:"✓";color:var(--orange)}
+
+/* AWARD STRIP */
+.award-strip{display:flex;align-items:center;gap:24px;background:var(--black);border-radius:18px;padding:24px 32px;margin-top:4px}
+.award-icon{font-size:40px;flex-shrink:0}
+.award-text h3{font-size:18px;font-weight:950;color:#fff;margin-bottom:4px}
+.award-text p{font-size:12.5px;color:#a89e94;line-height:1.6}
+
+/* FADE */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.in{opacity:1;transform:none}
+
+/* TIMELINE */
+.tl-wrap{display:flex;flex-direction:column;gap:0;position:relative;padding-left:28px}
+.tl-wrap::before{content:"";position:absolute;left:10px;top:10px;bottom:10px;width:2px;background:linear-gradient(to bottom,var(--orange),rgba(255,92,36,.15))}
+.tl-item{position:relative;padding-bottom:22px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-18px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--orange);border:2px solid var(--bg)}
+.tl-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.tl-tag{font-size:10px;font-weight:900;color:var(--orange);background:rgba(255,92,36,.1);padding:2px 10px;border-radius:999px;display:inline-block;margin-bottom:6px}
+.tl-card h3{font-size:14px;font-weight:900;margin-bottom:4px}
+.tl-card p{font-size:12px;color:var(--muted);line-height:1.65}
+
+@media(max-width:760px){
+  .detail-hero h1{font-size:36px}
+  .cards-2col,.cards-3col,.cards-4col{grid-template-columns:1fr}
+  .ba-grid{grid-template-columns:1fr}
+  .metric-list{grid-template-columns:1fr}
+  .stats-row{gap:20px}
+  .tab-nav{gap:4px;overflow-x:auto}
+  .tab-btn{padding:10px 14px 12px}
+  .tab-name{font-size:12px}
+  .tab-sub{display:none}
+  .tab-content{padding:20px 16px}
+  .comp-item{grid-template-columns:1fr}
+  .award-strip{flex-direction:column;text-align:center;padding:24px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Cici Zhang<div class="logo-dot"></div></div>
+    <a class="back-btn" href="cici_pm_portfolio_bold_black_orange.html">← 返回作品集</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <div class="detail-hero">
+    <div class="detail-badge">
+      <span class="badge dark">03</span>
+      <span class="badge type">Design System</span>
+      <span class="badge type">B端体验</span>
+      <span class="badge type">0→1</span>
+    </div>
+    <h1>MWS<br>设计规范<em>体系</em></h1>
+    <p class="detail-lead">美团云统一设计语言与组件资产库，从 0 到 1 搭建覆盖多条产品线的 B 端设计规范，解决 UI 风格分散、研发还原度低、跨团队协同成本极高的核心问题。</p>
+    <div class="stats-row">
+      <div class="stat-item"><strong>100+</strong><span>规范文档页面</span></div>
+      <div class="stat-item"><strong>400+</strong><span>Icon 资产</span></div>
+      <div class="stat-item"><strong>20+</strong><span>覆盖系统/产品线</span></div>
+      <div class="stat-item"><strong>20%+</strong><span>信息密度提升</span></div>
+    </div>
+  </div>
+
+  <!-- 背景与目标 -->
+  <section class="fade-in">
+    <div class="sec-label">Background</div>
+    <div class="sec-title">背景 — 为什么要做 MWS？</div>
+    <div class="cards-2col">
+      <div class="card">
+        <div class="card-icon">🧩</div>
+        <h3>核心痛点</h3>
+        <p>美团云旗下 IaaS、SaaS、SRE 等多条产品线各自为政，UI 风格高度不统一。设计资产分散、无法复用，研发还原度低，每个项目都要"从头来一遍"。跨团队协同成本极高，设计师与研发的沟通摩擦严重影响交付效率。</p>
+      </div>
+      <div class="card dark">
+        <div class="card-icon">🎯</div>
+        <h3>产品目标</h3>
+        <p style="color:#a89e94">统一语言：为美团云所有 B 端产品建立一套共同的视觉设计语言与交互规范。<br><br>提效交付：通过组件资产库与交付标准，减少设计→研发的重复沟通。<br><br>场景沉淀：从通用组件规范延伸到业务场景，形成可复用的最佳实践资产。<br><br>生态建设：推动设计文化在云产品团队中的落地与传承。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 设计体系架构 -->
+  <section class="fade-in">
+    <div class="sec-label">System Architecture</div>
+    <div class="sec-title">三层体系：从底层到场景</div>
+    <div class="flow">
+      <div class="flow-step">设计基础</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">组件规范</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">业务模板</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">场景沉淀</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">研发交付</div>
+    </div>
+    <div class="cards-3col" style="margin-top:20px">
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>第一层：设计基础</h3>
+        <p>色彩系统、字体规范、间距网格、图标体系（400+ Icon）、阴影与圆角。建立视觉语言的"最小公约数"，确保全局一致性。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔧</div>
+        <h3>第二层：组件规范</h3>
+        <p>表单、表格、导航、弹窗、提示、数据可视化等核心 UI 组件的交互规范与视觉标准，覆盖各状态与异常场景。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📐</div>
+        <h3>第三层：场景沉淀</h3>
+        <p>将 IaaS 资源管理、监控大盘、配置中心等高频业务场景提炼为可复用的页面模板，降低新项目启动成本。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 核心工作 TAB -->
+  <section class="fade-in">
+    <div class="sec-label">Core Work</div>
+    <div class="sec-title">四大核心工作模块</div>
+
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="design-lang">
+        <span class="tab-icon">✏️</span>
+        <span class="tab-name">设计语言</span>
+        <span class="tab-sub">色彩/字体/图标</span>
+      </button>
+      <button class="tab-btn" data-tab="component">
+        <span class="tab-icon">🧱</span>
+        <span class="tab-name">组件规范</span>
+        <span class="tab-sub">100+ 页文档</span>
+      </button>
+      <button class="tab-btn" data-tab="page-rebuild">
+        <span class="tab-icon">🖥️</span>
+        <span class="tab-name">页面改版</span>
+        <span class="tab-sub">信息密度优化</span>
+      </button>
+      <button class="tab-btn" data-tab="collab">
+        <span class="tab-icon">🤝</span>
+        <span class="tab-name">协同交付</span>
+        <span class="tab-sub">设计走查&研发提效</span>
+      </button>
+    </div>
+
+    <div class="tab-content">
+
+      <!-- 设计语言 -->
+      <div class="tab-panel active" id="tab-design-lang">
+        <div class="tp-summary">为美团云建立第一套统一视觉语言，解决多产品线"各说各话"的混乱局面，奠定整个规范体系的基础。</div>
+        <div class="cards-2col" style="margin-top:20px">
+          <div class="card">
+            <div class="card-icon">🎨</div>
+            <h3>色彩系统</h3>
+            <p>建立品牌色、功能色（成功/警告/错误/信息）、中性色的完整语义色板。统一深色/浅色背景下的对比度标准，确保无障碍可访问性（WCAG AA 标准）。</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔡</div>
+            <h3>字体与排版</h3>
+            <p>制定标题（H1-H4）、正文、辅助信息、标签的字号/字重/行高规范。在信息密度极高的 B 端场景下，确保层级清晰、阅读舒适。</p>
+          </div>
+        </div>
+        <div class="tp-divider"></div>
+        <div class="tp-block-title">图标体系建设</div>
+        <div class="cards-3col">
+          <div class="card">
+            <div class="card-icon">📦</div>
+            <h3>400+ 图标资产</h3>
+            <p>从零构建云产品专属图标库，覆盖服务器、网络、存储、安全、监控等核心业务场景，统一线条风格与视觉重量。</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📏</div>
+            <h3>栅格与间距</h3>
+            <p>定义 8px 基准网格系统，规范组件内外间距、页面布局间距，从根本上消除设计稿与研发实现的像素偏差。</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🌙</div>
+            <h3>暗色模式支持</h3>
+            <p>完整的 Token 体系支持明暗双主题切换，让色彩系统具备良好的可扩展性，为后续主题定制预留接口。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 组件规范 -->
+      <div class="tab-panel" id="tab-component">
+        <div class="tp-summary">输出 100+ 页组件规范文档，覆盖从基础元素到复杂交互模式的完整规范，成为设计与研发之间的唯一"语言字典"。</div>
+        <div class="tp-divider"></div>
+        <div class="tp-block-title">核心组件规范覆盖</div>
+        <div class="component-row">
+          <div class="comp-item">
+            <div class="comp-tag">数据录入</div>
+            <div>
+              <div class="comp-title">表单 · 输入框 · 选择器</div>
+              <p>规范各类输入态（默认/聚焦/错误/禁用/只读）、校验规则展示、必填标注方式，以及复杂表单的分组与折叠模式。</p>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-tag">数据展示</div>
+            <div>
+              <div class="comp-title">表格 · 列表 · 详情卡片</div>
+              <p>B 端最高频的数据展示场景。定义列宽分配策略、操作列规范、空状态设计、分页交互，以及超长内容的截断与展开方案。</p>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-tag">反馈通知</div>
+            <div>
+              <div class="comp-title">弹窗 · Toast · 空状态</div>
+              <p>统一确认弹窗、危险操作二次确认、批量操作反馈的交互模式，避免多产品线出现风格迥异的"自制弹窗"。</p>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-tag">导航结构</div>
+            <div>
+              <div class="comp-title">侧导航 · 顶导航 · 面包屑</div>
+              <p>针对美团云多层级产品结构，设计支持 2-4 级菜单的导航方案，并规范页面标题区、操作区的统一布局模式。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 页面改版 -->
+      <div class="tab-panel" id="tab-page-rebuild">
+        <div class="tp-summary">对现有产品页面进行系统性改版，在不改变功能的前提下，通过信息架构优化与视觉密度调整，让页面"更好用、更好看"。</div>
+        <div class="ba-grid" style="margin-top:20px">
+          <div class="ba-card before">
+            <div class="ba-label before-l">✗ 改版前</div>
+            <div class="ba-list">
+              <div class="ba-item">信息堆砌，无视觉层级，关键数据难以扫视</div>
+              <div class="ba-item">操作按钮散落各处，主次不明，误操作频发</div>
+              <div class="ba-item">各产品线字号、颜色随意，视觉噪音极大</div>
+              <div class="ba-item">表格列宽不合理，关键信息被截断</div>
+              <div class="ba-item">空状态、加载态缺失，用户困惑</div>
+            </div>
+          </div>
+          <div class="ba-card after">
+            <div class="ba-label after-l">✓ 改版后</div>
+            <div class="ba-list">
+              <div class="ba-item good">建立清晰信息层级，关键指标一眼可见</div>
+              <div class="ba-item good">主操作突出，危险操作二次确认，误操作↓</div>
+              <div class="ba-item good">统一视觉语言，信息密度提升 20%+</div>
+              <div class="ba-item good">智能列宽分配，内容完整展示</div>
+              <div class="ba-item good">完善各状态设计，体验闭环</div>
+            </div>
+          </div>
+        </div>
+        <div class="tp-divider"></div>
+        <div class="tp-block-title">典型改版场景</div>
+        <div class="cards-3col">
+          <div class="card">
+            <div class="card-icon">📊</div>
+            <h3>监控大盘</h3>
+            <p>重构指标卡片布局，引入趋势迷你图与状态色系，将原本密密麻麻的数字界面转变为可快速扫视的状态大盘。</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📋</div>
+            <h3>资源列表</h3>
+            <p>统一资源列表的列定义优先级（名称→状态→关键参数→操作），批量操作区固定在顶部，大幅提升运维效率。</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h3>配置中心</h3>
+            <p>将嵌套层级过深的配置页拆分为分步式表单，每步聚焦单一任务，配置完成率显著提升。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 协同交付 -->
+      <div class="tab-panel" id="tab-collab">
+        <div class-summary">
+          <div class="tp-summary">建立设计师与研发的协同工作流，通过统一标注规范和组件文档，大幅降低研发还原成本，实现设计交付标准化。</div>
+        </div>
+        <div class="cards-2col" style="margin-top:20px">
+          <div class="card">
+            <div class="card-icon">📐</div>
+            <h3>标注规范统一</h3>
+            <p>制定间距、字号、颜色的标注规则，设计稿输出格式标准化，研发按规范还原，减少反复沟通。</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📚</div>
+            <h3>组件文档体系</h3>
+            <p>每个组件配套使用说明、交互说明、状态说明，形成可检索的设计知识库，新成员上手成本降低 60%。</p>
+          </div>
+        </div>
+        <div class="tp-divider"></div>
+        <div class="tp-block-title">交付流程优化</div>
+        <div class="phases">
+          <div class="phase">
+            <span class="phase-num">Before</span>
+            <div>
+              <h3>改版前 — 高沟通成本</h3>
+              <p>设计师口头描述交互逻辑，研发自行理解，还原偏差大，需多轮 Review 返工，平均一个页面需要 3-5 次反复确认。</p>
+            </div>
+          </div>
+          <div class="phase">
+            <span class="phase-num">After</span>
+            <div>
+              <h3>改版后 — 规范驱动交付</h3>
+              <p>设计稿标注完整，组件文档自助查阅，研发直接对照组件库还原，Review 轮次从 3-5 次降至 1-2 次，交付效率提升 40%+。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 核心成果 -->
+  <section class="fade-in">
+    <div class="sec-label">Results</div>
+    <div class="sec-title">核心成果</div>
+    <div class="cards-3col">
+      <div class="card dark fade-in">
+        <div class="card-icon">🏗️</div>
+        <h3>从 0 到 1 完整体系</h3>
+        <p style="color:#a89e94">独立主导搭建 MWS 设计规范体系，覆盖视觉规范、交互规范、组件库、图标库、业务场景模板，形成完整的设计语言。</p>
+      </div>
+      <div class="card fade-in">
+        <div class="card-icon">🤝</div>
+        <h3>跨团队影响力</h3>
+        <p>被基础研发设计中心称为「最懂美团云的设计师」，主导推动 MWS 规范在美团云多条产品线落地，成为跨团队设计协作标准。</p>
+      </div>
+      <div class="card fade-in">
+        <div class="card-icon">🏆</div>
+        <h3>到店合作共赢奖</h3>
+        <p>MWS 体系的落地与推广成效获得公司级认可，荣获到店事业群合作共赢奖，是设计工具链规范化建设的里程碑项目。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 我的角色 -->
+  <section class="fade-in">
+    <div class="sec-label">My Role</div>
+    <div class="sec-title">我的核心贡献</div>
+    <div class="cards-2col">
+      <div class="card fade-in">
+        <div class="card-icon">🎨</div>
+        <h3>设计体系架构师</h3>
+        <p>从 0 开始规划 MWS 设计规范的整体框架，定义设计原则、颜色体系、字体规范、间距系统，制定组件分类标准，搭建完整设计语言基础。</p>
+      </div>
+      <div class="card fade-in">
+        <div class="card-icon">🔧</div>
+        <h3>组件库主导建设</h3>
+        <p>主导 100+ 页组件规范文档与 400+ 图标资产的制作，与研发团队深度协作，推动设计资产直接进入前端组件库，实现设计与研发的一致性。</p>
+      </div>
+      <div class="card fade-in">
+        <div class="card-icon">📊</div>
+        <h3>体验改版落地</h3>
+        <p>负责美团云 20+ 核心系统的体验改版，应用 MWS 规范统一页面风格，信息层级更清晰，操作路径更短，用户学习成本显著降低。</p>
+      </div>
+      <div class="card fade-in">
+        <div class="card-icon">🚀</div>
+        <h3>推广与落地协同</h3>
+        <p>主动推动设计规范在多个业务线的落地推广，培训设计师使用规范，组织设计走查，持续迭代规范内容，形成设计规范的自我完善机制。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div style="text-align:center;padding:26px 0;font-size:11px;color:#bbb">© 2025 Cici Zhang · 张秀娟 · All Rights Reserved</div>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + target).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

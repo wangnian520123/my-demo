@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DCIM 数据中心基础设施管理系统｜Cici Zhang</title>
+<style>
+:root{
+  --bg:#f3eee5;--card:#fbf7ef;--ink:#121212;--muted:#686057;--line:#d7cbbc;
+  --orange:#ff5c24;--orange2:#ff9a55;--black:#111;--radius:22px;
+  --dark-bg:#0d1117;--dark-card:#161b24;--dark-border:#1e2730;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:14px}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line);backdrop-filter:blur(20px);background:rgba(243,238,229,.9)}
+.nav-inner{width:min(1060px,92vw);margin:auto;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;letter-spacing:-.03em;font-size:15px;display:flex;align-items:center;gap:6px}
+.logo-dot{width:7px;height:7px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--muted);padding:7px 14px;border:1px solid var(--line);border-radius:4px;transition:all .2s}
+.back-btn:hover{color:var(--ink);border-color:var(--ink)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+
+.wrap{width:min(1060px,92vw);margin:auto;padding-bottom:80px}
+
+/* HERO */
+.detail-hero{padding:56px 0 48px;border-bottom:1px solid var(--line)}
+.detail-badge{display:inline-flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:800;padding:4px 12px;border-radius:999px}
+.badge.type{background:rgba(255,92,36,.12);color:var(--orange)}
+.badge.dark{background:#1a1a1a;color:rgba(255,255,255,.6)}
+.detail-hero h1{font-size:48px;line-height:1.05;letter-spacing:-.05em;font-weight:950;margin-bottom:20px}
+.detail-hero h1 em{font-style:normal;color:var(--orange)}
+.detail-lead{font-size:15px;color:var(--muted);max-width:720px;line-height:1.8}
+.stats-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
+.stat-item strong{font-size:36px;font-weight:950;display:block;line-height:1;color:var(--orange)}
+.stat-item span{font-size:11px;color:var(--muted);margin-top:4px;display:block}
+
+/* SECTION */
+section{padding:44px 0;border-bottom:1px solid var(--line)}
+.sec-label{color:var(--orange);font-size:11px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sec-label::before{content:"";width:18px;height:2px;background:var(--orange);border-radius:999px}
+.sec-title{font-size:26px;font-weight:950;letter-spacing:-.04em;margin-bottom:16px}
+.sec-desc{font-size:13.5px;color:var(--muted);max-width:780px;line-height:1.85;margin-bottom:28px}
+
+/* CARDS */
+.cards-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cards-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cards-4col{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;transition:box-shadow .22s,transform .22s}
+.card:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(-2px)}
+.card-icon{font-size:24px;margin-bottom:14px}
+.card h3{font-size:15px;font-weight:900;margin-bottom:10px}
+.card p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.card.dark{background:var(--black);color:#fff;border-color:#2a2a2a}
+.card.dark p{color:#a89e94}
+.card.dark h3{color:#fff}
+.card.highlight{border-color:rgba(255,92,36,.3);background:rgba(255,92,36,.04)}
+
+/* TAB SYSTEM */
+.tab-nav{display:flex;gap:10px;border-bottom:2px solid var(--line);padding-bottom:0;margin-bottom:28px}
+.tab-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px 22px 16px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;transition:all .2s;border-radius:10px 10px 0 0}
+.tab-btn:hover{background:rgba(255,92,36,.05)}
+.tab-btn.active{border-bottom-color:var(--orange);background:rgba(255,92,36,.06)}
+.tab-icon{font-size:20px;line-height:1}
+.tab-name{font-size:13px;font-weight:900;color:var(--ink)}
+.tab-sub{font-size:10px;color:var(--muted)}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* PHASE / STEP */
+.phases{display:flex;flex-direction:column;gap:14px}
+.phase{border:1px solid var(--line);border-radius:18px;padding:22px 28px;background:var(--card);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;transition:box-shadow .22s}
+.phase:hover{box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.phase-num{font-size:11px;font-weight:950;color:var(--orange);background:rgba(255,92,36,.1);padding:4px 12px;border-radius:999px;white-space:nowrap;margin-top:3px}
+.phase h3{font-size:14px;font-weight:900;margin-bottom:6px}
+.phase p{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* FLOW BAR */
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--black);border-radius:16px;padding:20px 24px;margin-top:4px}
+.flow-step{background:rgba(255,92,36,.2);border:1px solid rgba(255,92,36,.35);color:var(--orange2);padding:6px 16px;border-radius:999px;font-size:12px;font-weight:800}
+.flow-arrow{color:#666;font-size:14px}
+
+/* SCREENSHOT SHOWCASE */
+.screen-block{margin-bottom:28px}
+.screen-label{font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.screen-label::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--orange);flex-shrink:0}
+.screen-img{width:100%;border-radius:16px;border:1px solid var(--line);box-shadow:0 8px 32px rgba(0,0,0,.1);display:block;transition:transform .3s,box-shadow .3s}
+.screen-img:hover{transform:scale(1.01);box-shadow:0 16px 48px rgba(0,0,0,.15)}
+.screen-img-dark{width:100%;border-radius:16px;border:1px solid var(--dark-border);box-shadow:0 8px 32px rgba(0,0,0,.35);display:block;transition:transform .3s,box-shadow .3s}
+.screen-img-dark:hover{transform:scale(1.01);box-shadow:0 16px 48px rgba(0,0,0,.45)}
+.screen-caption{font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.6}
+.screen-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:4px}
+.screen-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:4px}
+
+/* PROCESS STEPS */
+.process-steps{display:flex;gap:0;margin-top:4px;position:relative}
+.process-steps::before{content:"";position:absolute;top:24px;left:24px;right:24px;height:1px;background:linear-gradient(90deg,var(--orange),var(--orange2),var(--orange));opacity:.3}
+.p-step{flex:1;text-align:center;position:relative;z-index:1}
+.p-step-dot{width:48px;height:48px;border-radius:50%;background:var(--card);border:2px solid var(--orange);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:950;color:var(--orange)}
+.p-step-name{font-size:12px;font-weight:900;margin-bottom:4px}
+.p-step-sub{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* ROLE BLOCK */
+.role-block{background:var(--black);border-radius:20px;padding:32px;color:#fff;margin-top:4px}
+.role-block h3{font-size:18px;font-weight:950;margin-bottom:6px;color:#fff}
+.role-block .role-title{font-size:12px;color:var(--orange);font-weight:800;margin-bottom:16px}
+.role-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.role-tag{background:rgba(255,92,36,.15);border:1px solid rgba(255,92,36,.3);color:var(--orange2);padding:5px 14px;border-radius:999px;font-size:11px;font-weight:800}
+
+/* INSIGHT QUOTE */
+.insight{border-left:3px solid var(--orange);padding:16px 22px;background:rgba(255,92,36,.04);border-radius:0 12px 12px 0;margin:20px 0;font-size:13.5px;color:var(--ink);line-height:1.8;font-style:italic}
+
+/* RESULT ROW */
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:4px}
+.result-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 24px;text-align:center}
+.result-card .num{font-size:38px;font-weight:950;color:var(--orange);line-height:1}
+.result-card .unit{font-size:13px;color:var(--orange2);font-weight:800;margin-left:2px}
+.result-card .label{font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.5}
+
+/* CHALLENGE TAG */
+.challenge-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.c-tag{font-size:11.5px;font-weight:800;padding:5px 14px;border-radius:999px;border:1px solid}
+.c-tag.problem{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.25);color:#dc2626}
+.c-tag.solution{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.25);color:#16a34a}
+
+/* FIELDWORK */
+.fieldwork-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:4px}
+.fieldwork-card{background:var(--dark-bg);border:1px solid var(--dark-border);border-radius:18px;padding:24px;color:#c5b9a8}
+.fieldwork-card h4{font-size:13px;font-weight:900;color:#fff;margin-bottom:10px}
+.fieldwork-card p{font-size:12px;line-height:1.75;color:#888}
+.fw-tag{display:inline-block;font-size:10px;font-weight:800;padding:3px 10px;border-radius:999px;background:rgba(255,154,85,.15);color:var(--orange2);margin-bottom:10px}
+
+/* ALARM LEVEL */
+.alarm-levels{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:4px}
+.alarm-card{border-radius:14px;padding:18px;text-align:center}
+.alarm-card.p0{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3)}
+.alarm-card.p1{background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3)}
+.alarm-card.p2{background:rgba(234,179,8,.1);border:1px solid rgba(234,179,8,.3)}
+.alarm-card.p3{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.25)}
+.alarm-card .level{font-size:22px;font-weight:950;margin-bottom:4px}
+.alarm-card.p0 .level{color:#ef4444}
+.alarm-card.p1 .level{color:#f97316}
+.alarm-card.p2 .level{color:#eab308}
+.alarm-card.p3 .level{color:#6366f1}
+.alarm-card .desc{font-size:11px;color:var(--muted);line-height:1.5}
+
+@media(max-width:720px){
+  .detail-hero h1{font-size:30px}
+  .cards-2col,.cards-3col,.cards-4col,.screen-grid,.screen-grid-3,.result-grid,.fieldwork-grid,.alarm-levels{grid-template-columns:1fr}
+  .process-steps{flex-direction:column;gap:16px}
+  .process-steps::before{display:none}
+  .tab-btn{padding:10px 14px 12px}
+  .tab-name{font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-dot"></span>Cici Zhang · Portfolio</div>
+    <a class="back-btn" href="cici_pm_portfolio_bold_black_orange.html">← 返回作品集</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="detail-hero">
+    <div class="detail-badge">
+      <span class="badge type">从 0 到 1</span>
+      <span class="badge dark">数据中心基础设施</span>
+      <span class="badge dark">IoT · 3D 可视化</span>
+      <span class="badge dark">B 端系统设计</span>
+    </div>
+    <h1>DCIM<br/><em>数据中心</em><br/>基础设施线上化管理</h1>
+    <p class="detail-lead">深入全国多个 IDC 实体机房进行线下调研，将长期依赖人工巡检的数据中心运维体系全面线上化——构建覆盖告警响应、设备监控、3D 空间漫游的统一运维平台，让故障发现从「小时级」缩短至「分钟级」。</p>
+    <div class="stats-row">
+      <div class="stat-item"><strong>10<em style="font-size:20px;color:var(--orange2)">+</em></strong><span>覆盖 IDC 园区</span></div>
+      <div class="stat-item"><strong>7</strong><span>空间层级下钻</span></div>
+      <div class="stat-item"><strong>P0–P3</strong><span>分级告警体系</span></div>
+      <div class="stat-item"><strong>24<em style="font-size:20px;color:var(--orange2)">/7</em></strong><span>实时监控在线</span></div>
+    </div>
+  </div>
+
+  <!-- TAB SECTION -->
+  <section style="border-bottom:none;padding-top:44px">
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab(0,this)">
+        <span class="tab-icon">🔍</span>
+        <span class="tab-name">背景与挑战</span>
+        <span class="tab-sub">线下调研 → 线上化</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(1,this)">
+        <span class="tab-icon">🏗️</span>
+        <span class="tab-name">设计思路</span>
+        <span class="tab-sub">架构与交互逻辑</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(2,this)">
+        <span class="tab-icon">🖥️</span>
+        <span class="tab-name">核心功能</span>
+        <span class="tab-sub">功能模块拆解</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(3,this)">
+        <span class="tab-icon">📈</span>
+        <span class="tab-name">成果与价值</span>
+        <span class="tab-sub">量化结果</span>
+      </button>
+    </div>
+
+    <!-- ===================== TAB 0: 背景与挑战 ===================== -->
+    <div class="tab-panel active" id="tab-0">
+      <div class="sec-label">Background</div>
+      <div class="sec-title">为什么数据中心需要线上化？</div>
+      <div class="sec-desc">美团在全国运营多个大型 IDC 园区（北京、天津、上海、宁夏等），托管数万台服务器及配套基础设施。然而系统建立之前，机房运维几乎完全依赖「线下人工」——故障靠电话通报、巡检靠纸质记录、设备状态靠人眼查看，一旦出现机房事故，从发现到响应往往需要数小时，严重影响线上业务稳定性。</div>
+
+      <div class="challenge-tags">
+        <span class="c-tag problem">❌ 故障发现严重滞后</span>
+        <span class="c-tag problem">❌ 无统一监控平台</span>
+        <span class="c-tag problem">❌ 设备状态只能人工巡检</span>
+        <span class="c-tag problem">❌ 多园区信息孤岛</span>
+        <span class="c-tag problem">❌ 告警响应链路不透明</span>
+        <span class="c-tag solution">✅ 实时告警 + 分级响应</span>
+        <span class="c-tag solution">✅ 全量设备线上可见</span>
+        <span class="c-tag solution">✅ 故障定位精确到设备</span>
+        <span class="c-tag solution">✅ 统一运维门户</span>
+      </div>
+
+      <!-- 线下调研 -->
+      <div class="sec-label" style="margin-top:32px">Field Research</div>
+      <div class="sec-title" style="font-size:20px">从线下调研开始的设计</div>
+      <p class="sec-desc" style="margin-bottom:20px">项目没有任何数字化基础可以参考。我们深入天津汇海、北京汇海、上海月浦等实体 IDC，对机房结构、设备布局、传感器接入位置、巡检流程逐一现场记录，将物理世界的运维逻辑「翻译」为系统设计语言。</p>
+
+      <div class="fieldwork-grid">
+        <div class="fieldwork-card">
+          <span class="fw-tag">现场调研</span>
+          <h4>机房结构与设备清查</h4>
+          <p>逐楼层、逐机房记录设备布局：机柜行列编号、列头柜位置、UPS 间、柴油机房分布，建立完整的物理空间台账，为后续 3D 建模和信息架构提供原始数据。</p>
+        </div>
+        <div class="fieldwork-card">
+          <span class="fw-tag">传感器接入</span>
+          <h4>数据采集点布点规划</h4>
+          <p>调研各类传感器（温湿度、烟感、漏水、电流互感器等）的物理位置与通信协议，规划 IoT 数据接入方案，确保每个监控点都能在系统中精准映射到空间位置。</p>
+        </div>
+        <div class="fieldwork-card">
+          <span class="fw-tag">运维访谈</span>
+          <h4>巡检痛点与响应流程</h4>
+          <p>与一线运维工程师深度访谈，梳理现有故障响应流程：「设备报警 → 电话通知 → 现场确认 → 手工记录」的链路存在大量人工中转节点，是响应滞后的根本原因。</p>
+        </div>
+        <div class="fieldwork-card">
+          <span class="fw-tag">信息标准化</span>
+          <h4>多厂商设备数据统一</h4>
+          <p>数据中心涵盖中压/低压配电、柴油发电机、UPS、冷冻站群控、列头柜等数十类设备，各厂商数据格式迥异。调研阶段完成字段映射与展示规范的统一定义。</p>
+        </div>
+      </div>
+
+      <div class="insight" style="margin-top:28px">
+        "我们不是在做一个后台管理系统，而是把整栋数据中心楼搬到了屏幕里——让运维工程师不用去现场，就能知道每一台设备此刻的状态。"
+      </div>
+
+      <div class="phases" style="margin-top:24px">
+        <div class="phase">
+          <div class="phase-num">核心目标</div>
+          <div>
+            <h3>故障快速感知与响应</h3>
+            <p>DCIM 最核心的价值不是节能，而是「第一时间发现故障、第一时间定位设备、第一时间通知处理」。系统需要将机房任何异常（温度超限、设备断电、列头柜支路过载等）在秒级内推送给值班人员，并提供精确到设备级别的位置信息，大幅压缩故障响应时间。</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-num">设计挑战</div>
+          <div>
+            <h3>7 层空间层级的统一表达</h3>
+            <p>从全国 Region → IDC 园区 → 机房楼 → 楼层 → 机房间 → 机柜区 → 单台设备，空间层级多达 7 层。如何让运维人员在同一套界面中自然地「钻取」到任意深度，同时不迷失方向，是核心交互难题。</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-num">设计挑战</div>
+          <div>
+            <h3>实时数据与 3D 空间的融合</h3>
+            <p>3D 模型不能只是装饰，必须承载真实的设备状态数据。当列头柜过载时，3D 场景中对应机柜需高亮报警；当温湿度传感器异常时，需在机房平面图中精确标注位置。数据与空间的实时绑定是最大的技术与设计挑战。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== TAB 1: 设计思路 ===================== -->
+    <div class="tab-panel" id="tab-1">
+      <div class="sec-label">Design Approach</div>
+      <div class="sec-title">从调研到系统的设计路径</div>
+      <div class="sec-desc">以「空间层级」为信息架构骨架，以「告警响应效率」为核心设计目标，通过 3D 数字孪生 + 实时数据流构建完整的线上化运维体系。</div>
+
+      <div class="process-steps">
+        <div class="p-step">
+          <div class="p-step-dot">1</div>
+          <div class="p-step-name">线下调研</div>
+          <div class="p-step-sub">现场勘测<br/>设备清单<br/>传感器布点</div>
+        </div>
+        <div class="p-step">
+          <div class="p-step-dot">2</div>
+          <div class="p-step-name">信息架构</div>
+          <div class="p-step-sub">空间层级定义<br/>设备分类规范<br/>字段标准化</div>
+        </div>
+        <div class="p-step">
+          <div class="p-step-dot">3</div>
+          <div class="p-step-name">3D 建模</div>
+          <div class="p-step-sub">园区鸟瞰模型<br/>楼栋剖面视图<br/>机房平面/立体</div>
+        </div>
+        <div class="p-step">
+          <div class="p-step-dot">4</div>
+          <div class="p-step-name">交互设计</div>
+          <div class="p-step-sub">下钻导航逻辑<br/>告警展示规范<br/>2D/3D 切换</div>
+        </div>
+        <div class="p-step">
+          <div class="p-step-dot">5</div>
+          <div class="p-step-name">数据接入</div>
+          <div class="p-step-sub">IoT 数据流<br/>告警规则配置<br/>传感器协议</div>
+        </div>
+        <div class="p-step">
+          <div class="p-step-dot">6</div>
+          <div class="p-step-name">全国铺开</div>
+          <div class="p-step-sub">多园区上线<br/>持续迭代<br/>新设备接入</div>
+        </div>
+      </div>
+
+      <div style="margin-top:36px">
+        <div class="sec-label">System Hierarchy</div>
+        <div class="sec-title" style="font-size:20px">七层空间下钻体系</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px">每一层均配有 3D 可视化视图与实时数据面板，运维人员可从全局视角快速钻取到具体故障设备。</p>
+        <div class="flow">
+          <span class="flow-step">🌏 全国 Region</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">🏭 IDC 园区</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">🏢 机房楼</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">📐 楼层</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">🚪 机房间</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">🗄️ 机柜区</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">⚙️ 单台设备</span>
+        </div>
+      </div>
+
+      <div class="cards-2col" style="margin-top:28px">
+        <div class="card">
+          <div class="card-icon">🔴</div>
+          <h3>告警优先设计原则</h3>
+          <p>所有界面层级均以「告警可见性」为第一优先级——未恢复告警始终悬浮展示，3D 场景中故障设备自动红色高亮，确保值班工程师无论在哪一层级操作都不会错过任何异常。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🗺️</div>
+          <h3>空间 + 数据双视图</h3>
+          <p>每个层级均提供 2D 平面图与 3D 立体视图的自由切换。2D 图适合精确定位设备编号，3D 视图适合感知空间态势。用户可根据操作习惯灵活选择，降低学习成本。</p>
+        </div>
+      </div>
+
+      <!-- Architecture 大图 -->
+      <div style="margin-top:28px" class="screen-block">
+        <div class="screen-label">园区总览大屏 — 天津汇海 IDC</div>
+        <img class="screen-img-dark" src="dcim_s3.png" alt="DCIM 园区总览大屏" />
+        <div class="screen-caption">园区鸟瞰 3D 模型为底图，左侧实时 PUE 仪表 + 趋势图 + 耗能/容量统计；右侧未恢复告警列表 + 累计告警柱状图 + 温湿度仪表；底部快速切换中压/低压/燃油/冷冻站系统。</div>
+      </div>
+
+      <div class="screen-grid" style="margin-top:16px">
+        <div class="screen-block">
+          <div class="screen-label">楼栋剖面 3D 视图</div>
+          <img class="screen-img-dark" src="dcim_s1.png" alt="楼栋剖面 3D 视图" />
+          <div class="screen-caption">点击楼栋后进入剖面透视，清晰呈现各楼层机房分布，可继续点击进入具体楼层。</div>
+        </div>
+        <div class="screen-block">
+          <div class="screen-label">机房楼层 3D 鸟瞰</div>
+          <img class="screen-img-dark" src="dcim_s4.png" alt="机房楼层 3D 鸟瞰" />
+          <div class="screen-caption">楼层内机房 3D 俯视图，机柜、UPS、柴油机等设备立体呈现，故障设备自动红色高亮。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== TAB 2: 核心功能 ===================== -->
+    <div class="tab-panel" id="tab-2">
+      <div class="sec-label">Core Features</div>
+      <div class="sec-title">四大核心功能模块</div>
+      <div class="sec-desc">系统由监控管理、告警管理、运维管理、运营管理四大模块构成，以 3D 空间可视化为核心交互媒介，贯通从宏观态势感知到微观设备故障定位的全链路。</div>
+
+      <div class="cards-4col" style="margin-bottom:32px">
+        <div class="card highlight">
+          <div class="card-icon">📡</div>
+          <h3>监控管理</h3>
+          <p>全链路实时监控，3D 模型交互下钻，设备状态一览无余</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔔</div>
+          <h3>告警管理</h3>
+          <p>P0–P3 分级告警，实时推送，支持告警趋势分析与处理跟踪</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔧</div>
+          <h3>运维管理</h3>
+          <p>设备台账、巡检工单、故障处理记录全流程线上化管理</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>运营管理</h3>
+          <p>PUE 趋势、容量分析、能耗报表，支撑管理层决策</p>
+        </div>
+      </div>
+
+      <!-- 告警分级 -->
+      <div class="sec-label">Alert System</div>
+      <div class="sec-title" style="font-size:20px">P0–P3 分级告警体系</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px">根据故障影响范围和紧迫程度设计四级告警，确保值班人员能快速区分优先级，第一时间处置高危故障。</p>
+      <div class="alarm-levels">
+        <div class="alarm-card p0">
+          <div class="level">P0</div>
+          <div class="desc">特级紧急<br/>影响业务连续性<br/>立即响应</div>
+        </div>
+        <div class="alarm-card p1">
+          <div class="level">P1</div>
+          <div class="desc">一级告警<br/>设备严重故障<br/>30 分钟内响应</div>
+        </div>
+        <div class="alarm-card p2">
+          <div class="level">P2</div>
+          <div class="desc">二级告警<br/>性能异常/预警<br/>2 小时内响应</div>
+        </div>
+        <div class="alarm-card p3">
+          <div class="level">P3</div>
+          <div class="desc">三级告警<br/>轻微异常<br/>24 小时内处理</div>
+        </div>
+      </div>
+
+      <!-- 机房间监控 -->
+      <div style="margin-top:36px">
+        <div class="sec-label">Room Monitor</div>
+        <div class="sec-title" style="font-size:20px">机房间实时监控</div>
+        <div class="screen-grid">
+          <div class="screen-block">
+            <div class="screen-label">机房 3D 视图 + 设备概览</div>
+            <img class="screen-img-dark" src="dcim_s5.png" alt="机房 3D 视图" />
+            <div class="screen-caption">右侧实时展示机柜数、服务器数、恒温机、空调数量；列头柜负载进度条异常时自动标红（83% 过载）。</div>
+          </div>
+          <div class="screen-block">
+            <div class="screen-label">设备 Hover 信息卡片</div>
+            <img class="screen-img-dark" src="dcim_s14.png" alt="设备信息卡片" />
+            <div class="screen-caption">3D 场景中鼠标悬浮设备时弹出信息卡，显示编号、名称、实时状态，异常设备红色高亮区分。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 温湿度监控 -->
+      <div style="margin-top:28px">
+        <div class="sec-label">Environment Monitor</div>
+        <div class="sec-title" style="font-size:20px">温湿度实时感知</div>
+        <div class="screen-block">
+          <img class="screen-img-dark" src="dcim_s13.png" alt="温湿度监控" />
+          <div class="screen-caption">2D 平面视图中，每个温湿度传感器以圆形气泡标注实时数值。正常状态显示蓝色，湿度超限时切换为红色告警气泡，位置精确对应物理布点。设备编号 TH-5 湿度 50.2%RH 触发告警。</div>
+        </div>
+      </div>
+
+      <!-- 设备级监控 -->
+      <div style="margin-top:28px">
+        <div class="sec-label">Device Detail</div>
+        <div class="sec-title" style="font-size:20px">设备级精细数据</div>
+        <div class="screen-grid">
+          <div class="screen-block">
+            <div class="screen-label">列头柜支路监控</div>
+            <img class="screen-img-dark" src="dcim_s10.png" alt="列头柜详情" />
+            <div class="screen-caption">精确展示每条支路的开关状态、支路电流、功率、用电量，异常支路（支路7、支路1）用橙色⚠️标注，配合 3D 机柜模型直观定位。</div>
+          </div>
+          <div class="screen-block">
+            <div class="screen-label">电池组健康状态</div>
+            <img class="screen-img-dark" src="dcim_s11.png" alt="电池组监控" />
+            <div class="screen-caption">单体电压、内阻、温度三维度同时监控，柱状图直观对比 40 颗电池单体的健康差异，提前预判 UPS 故障风险。</div>
+          </div>
+        </div>
+        <div class="screen-block" style="margin-top:16px">
+          <div class="screen-label">柴油发电机全量参数</div>
+          <img class="screen-img-dark" src="dcim_s12.png" alt="柴油机监控" />
+          <div class="screen-caption">柴油机运行状态（停止/手动/自动）、多路电压电流、总有功功率、累计运行时长（38,917,331 小时）、启动次数（817,391 次）等全量参数在线可查，故障类型精确标注（低水位/低油位/过流/低频等）。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== TAB 3: 成果与价值 ===================== -->
+    <div class="tab-panel" id="tab-3">
+      <div class="sec-label">Impact</div>
+      <div class="sec-title">线上化带来的核心价值</div>
+      <div class="sec-desc">DCIM 系统上线后，最核心的价值体现在故障响应效率的大幅提升——运维工程师无需再依赖人工巡检，所有设备异常均能实时可见、精确定位、快速处置。</div>
+
+      <div class="result-grid">
+        <div class="result-card">
+          <div class="num">小时级<span class="unit" style="font-size:12px;color:var(--muted)"></span></div>
+          <div class="label" style="margin-top:12px">→ <strong style="color:var(--orange)">分钟级</strong><br/>故障感知时间大幅压缩<br/>从人工巡检发现到系统秒级预警</div>
+        </div>
+        <div class="result-card">
+          <div class="num">10<span class="unit">+</span></div>
+          <div class="label">IDC 园区统一纳管<br/>全国分散机房首次实现<br/>统一监控平台覆盖</div>
+        </div>
+        <div class="result-card">
+          <div class="num">7</div>
+          <div class="label">空间层级全贯通<br/>从园区总览到单台设备<br/>一套界面下钻到底</div>
+        </div>
+      </div>
+
+      <div class="result-grid" style="margin-top:16px">
+        <div class="result-card">
+          <div class="num">0</div>
+          <div class="label">纸质巡检记录<br/>运维操作全面线上化<br/>历史数据可追溯</div>
+        </div>
+        <div class="result-card">
+          <div class="num">P0–P3</div>
+          <div class="label">四级告警分级响应<br/>高危故障 30 分钟内<br/>必须完成确认处理</div>
+        </div>
+        <div class="result-card">
+          <div class="num">24<span class="unit">/7</span></div>
+          <div class="label">全年无间断在线监控<br/>设备异常第一时间<br/>推送值班工程师</div>
+        </div>
+      </div>
+
+      <div style="margin-top:36px">
+        <div class="sec-label">Before vs After</div>
+        <div class="sec-title" style="font-size:20px">线上化前后对比</div>
+        <div class="cards-2col">
+          <div class="card dark">
+            <div class="card-icon">😰</div>
+            <h3>线上化之前</h3>
+            <p>故障靠值班室电话通报 → 工程师赶到现场确认 → 手写纸质记录 → 逐级电话上报 → 处置完成手工归档。整个链路存在大量人工中转，单次故障响应往往超过 2 小时，且无法追溯历史处置记录。</p>
+          </div>
+          <div class="card highlight">
+            <div class="card-icon">✅</div>
+            <h3>线上化之后</h3>
+            <p>传感器异常 → 系统秒级推送告警 → 工程师在手机/电脑查看精确位置（精确到哪栋楼哪层哪个机柜） → 携带工具直达故障点 → 系统内完成工单闭环。响应时间压缩到分钟级，全程可追溯。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 产品截图 showcase -->
+      <div style="margin-top:36px">
+        <div class="sec-label">Product Showcase</div>
+        <div class="sec-title" style="font-size:20px">系统界面全览</div>
+        <div class="screen-block">
+          <div class="screen-label">园区总览 — 3D 鸟瞰 + 实时数据大屏</div>
+          <img class="screen-img-dark" src="dcim_s2.png" alt="DCIM 园区总览" />
+          <div class="screen-caption">天津汇海 IDC 大屏：实时 PUE 2.35、年耗电 12,710 MWh、年耗水 22,944 MWh、机架上架率 500 台；中央 3D 楼栋模型支持点击下钻；右侧展示未恢复告警（P1~P3 级）与累计告警趋势。</div>
+        </div>
+        <div class="screen-grid" style="margin-top:16px">
+          <div class="screen-block">
+            <div class="screen-label">机房内 3D + 告警高亮</div>
+            <img class="screen-img-dark" src="dcim_s6.png" alt="机房告警" />
+            <div class="screen-caption">机房 3D 视图中故障设备（红色 A02）与正常设备形成鲜明对比，工程师可直接定位问题所在排列。</div>
+          </div>
+          <div class="screen-block">
+            <div class="screen-label">设备状态卡片</div>
+            <img class="screen-img-dark" src="dcim_s9.png" alt="设备状态" />
+            <div class="screen-caption">列头柜支路负载实时看板，列表精确展示每条支路的电流、功率、用电量，过载支路红色告警高亮。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 我的角色 -->
+      <div style="margin-top:36px">
+        <div class="role-block">
+          <h3>我在项目中的角色</h3>
+          <div class="role-title">产品设计师 · 全程参与</div>
+          <p style="font-size:13px;color:#a89e94;line-height:1.8">独立负责从线下调研到系统上线的全链路设计工作。亲赴天津、北京、上海等地 IDC 机房进行现场调研，采集设备布局、传感器分布、运维流程等第一手数据；负责系统整体信息架构设计、七层空间下钻交互逻辑、3D 可视化与数据面板的视觉设计规范，以及告警体系的 P0–P3 分级展示方案。</p>
+          <div class="role-tags">
+            <span class="role-tag">线下实地调研</span>
+            <span class="role-tag">信息架构设计</span>
+            <span class="role-tag">3D 交互设计</span>
+            <span class="role-tag">告警体系设计</span>
+            <span class="role-tag">IoT 数据可视化</span>
+            <span class="role-tag">B 端系统规范</span>
+            <span class="role-tag">多端设计适配</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<script>
+function switchTab(idx, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + idx).classList.add('active');
+}
+</script>
+</body>
+</html>

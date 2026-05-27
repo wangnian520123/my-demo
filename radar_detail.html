@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Radar 故障管理系统｜Cici Zhang</title>
+<style>
+:root{--bg:#f3eee5;--card:#fbf7ef;--ink:#121212;--muted:#686057;--line:#d7cbbc;--orange:#ff5c24;--orange2:#ff9a55;--black:#111;--radius:22px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:14px}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line);backdrop-filter:blur(20px);background:rgba(243,238,229,.9)}
+.nav-inner{width:min(1060px,92vw);margin:auto;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;letter-spacing:-.03em;font-size:15px;display:flex;align-items:center;gap:6px}
+.logo-dot{width:7px;height:7px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--muted);padding:7px 14px;border:1px solid var(--line);border-radius:4px;transition:all .2s}
+.back-btn:hover{color:var(--ink);border-color:var(--ink)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+
+.wrap{width:min(1060px,92vw);margin:auto;padding-bottom:80px}
+
+/* HERO */
+.detail-hero{padding:56px 0 48px;border-bottom:1px solid var(--line)}
+.detail-badge{display:inline-flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:800;padding:4px 12px;border-radius:999px}
+.badge.type{background:rgba(255,92,36,.12);color:var(--orange)}
+.badge.dark{background:#1a1a1a;color:rgba(255,255,255,.6)}
+.detail-hero h1{font-size:52px;line-height:1;letter-spacing:-.06em;font-weight:950;margin-bottom:20px}
+.detail-hero h1 em{font-style:normal;color:var(--orange)}
+.detail-lead{font-size:15px;color:var(--muted);max-width:700px;line-height:1.8}
+.stats-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
+.stat-item strong{font-size:36px;font-weight:950;display:block;line-height:1;color:var(--orange)}
+.stat-item span{font-size:11px;color:var(--muted);margin-top:4px;display:block}
+
+/* SECTION */
+section{padding:40px 0;border-bottom:1px solid var(--line)}
+.sec-label{color:var(--orange);font-size:11px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sec-label::before{content:"";width:18px;height:2px;background:var(--orange);border-radius:999px}
+.sec-title{font-size:26px;font-weight:950;letter-spacing:-.04em;margin-bottom:24px}
+
+/* CARDS */
+.cards-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cards-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;transition:box-shadow .22s,transform .22s}
+.card:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(-2px)}
+.card-icon{font-size:24px;margin-bottom:14px}
+.card h3{font-size:15px;font-weight:900;margin-bottom:10px}
+.card p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.card.dark{background:var(--black);color:#fff;border-color:#2a2a2a}
+.card.dark p{color:#a89e94}
+.card.dark h3{color:#fff}
+
+/* PHASE */
+.phases{display:flex;flex-direction:column;gap:14px}
+.phase{border:1px solid var(--line);border-radius:18px;padding:24px 28px;background:var(--card);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;transition:box-shadow .22s}
+.phase:hover{box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.phase-num{font-size:11px;font-weight:950;color:var(--orange);background:rgba(255,92,36,.1);padding:4px 12px;border-radius:999px;white-space:nowrap;margin-top:3px}
+.phase h3{font-size:14px;font-weight:900;margin-bottom:6px}
+.phase p{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* METRIC LIST */
+.metric-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+.m-item{background:rgba(255,92,36,.06);border:1px solid rgba(255,92,36,.15);border-radius:10px;padding:12px 16px;font-size:12px;color:var(--ink)}
+.m-item strong{color:var(--orange);font-weight:900;margin-right:4px}
+
+/* FLOW */
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--black);border-radius:16px;padding:20px 24px;margin-top:4px}
+.flow-step{background:rgba(255,92,36,.2);border:1px solid rgba(255,92,36,.35);color:var(--orange2);padding:6px 16px;border-radius:999px;font-size:12px;font-weight:800}
+.flow-arrow{color:#666;font-size:14px}
+
+/* TAB NAV */
+.tab-nav{display:flex;gap:10px;margin-bottom:0;border-bottom:2px solid var(--line);padding-bottom:0}
+.tab-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px 22px 16px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;transition:all .2s;border-radius:10px 10px 0 0}
+.tab-btn:hover{background:rgba(255,92,36,.05)}
+.tab-btn.active{border-bottom-color:var(--orange);background:rgba(255,92,36,.06)}
+.tab-icon{font-size:20px;line-height:1}
+.tab-name{font-size:14px;font-weight:900;color:var(--ink);transition:color .2s}
+.tab-btn.active .tab-name{color:var(--orange)}
+.tab-sub{font-size:10px;color:var(--muted);font-weight:600}
+
+/* TAB CONTENT */
+.tab-content{background:var(--card);border:1px solid var(--line);border-top:none;border-radius:0 0 20px 20px;padding:32px}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:tab-in .3s ease}
+@keyframes tab-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* TAB INNER */
+.tp-summary{font-size:14px;color:var(--muted);line-height:1.8;padding:14px 18px;background:rgba(255,92,36,.05);border-left:3px solid var(--orange);border-radius:0 8px 8px 0}
+.tp-divider{height:1px;background:var(--line);margin:24px 0}
+.tp-block-title{font-size:13px;font-weight:900;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+
+/* FEAT ITEMS (Warroom 功能模块) */
+.feat-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;transition:box-shadow .2s}
+.feat-item:hover{box-shadow:0 6px 20px rgba(0,0,0,.07)}
+.feat-label{font-size:11px;font-weight:900;color:var(--orange);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.feat-item p{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* NOISE LIST */
+.noise-list{display:flex;flex-direction:column;gap:10px}
+.noise-item{display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;transition:box-shadow .2s}
+.noise-item:hover{box-shadow:0 6px 20px rgba(0,0,0,.07)}
+.noise-num{font-size:13px;font-weight:950;color:var(--orange);background:rgba(255,92,36,.1);border-radius:8px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.noise-name{font-size:14px;font-weight:900;margin-bottom:5px}
+.noise-body p{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* PROGRESS LAYERS */
+.progress-layers{display:flex;flex-direction:column;gap:0}
+.layer{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;transition:box-shadow .2s}
+.layer:hover{box-shadow:0 6px 20px rgba(0,0,0,.07)}
+.layer-tag{display:inline-block;font-size:10px;font-weight:900;color:var(--orange);background:rgba(255,92,36,.1);padding:3px 10px;border-radius:999px;margin-bottom:6px;letter-spacing:.04em}
+.layer-title{font-size:15px;font-weight:900;margin-bottom:8px}
+.layer p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.layer-arrow{text-align:center;color:var(--orange);font-size:18px;padding:4px 0;line-height:1}
+
+/* FADE */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.in{opacity:1;transform:none}
+
+@media(max-width:760px){
+  .detail-hero h1{font-size:36px}
+  .cards-2col,.cards-3col{grid-template-columns:1fr}
+  .metric-list{grid-template-columns:1fr}
+  .stats-row{gap:20px}
+  .tab-nav{gap:4px}
+  .tab-btn{padding:10px 14px 12px}
+  .tab-name{font-size:12px}
+  .tab-sub{display:none}
+  .tab-content{padding:20px 16px}
+  .noise-item{grid-template-columns:32px 1fr;gap:10px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Cici Zhang<div class="logo-dot"></div></div>
+    <a class="back-btn" href="cici_pm_portfolio_bold_black_orange.html">← 返回作品集</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <div class="detail-hero">
+    <div class="detail-badge">
+      <span class="badge dark">01</span>
+      <span class="badge type">SRE</span>
+      <span class="badge type">0→1</span>
+      <span class="badge type">故障管理</span>
+    </div>
+    <h1>Radar<br>故障管理<em>系统</em></h1>
+    <p class="detail-lead">雷达 Radar 3.0 是公司级的统一故障管理平台，整合告警中心、故障定位、故障处理，使事件和故障的处理更智能、更高效。</p>
+    <div class="stats-row">
+<div class="stat-item"><strong>72→60条</strong><span>ITU 人日均高等级告警接收量 TP90</span></div>
+<div class="stat-item"><strong>63%→80%</strong><span>全公司有效雷达事件占比</span></div>
+<div class="stat-item"><strong>≤120min</strong><span>S9+ 事故雷达处理时长 TP90</span></div>
+    </div>
+  </div>
+
+  <!-- 背景与目标 -->
+  <section class="fade-in">
+    <div class="sec-label">Background</div>
+    <div class="sec-title">背景 — 为什么要做 Radar？</div>
+    <div class="cards-2col">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+<h3>核心痛点</h3>
+<p><strong>故障协同依赖人，标准动作难落地</strong><br>故障处理对总指挥要求极高，协调能力弱或长期未处理故障的同学难以完全达标，基础动作缺失导致处理延迟，亟需将标准化流程固化到系统中。<br><br><strong>告警风暴，研发难以有效响应</strong><br>短时间内大量告警涌入（如 1–3 分钟生成 68 条），告警来源多、格式不固定，研发无法快速识别关键信息；高等级告警需人工在处理群中跟进，前置识别成本高。<br><br><strong>AI 入口混乱，诊断效率亟待突破</strong><br>事件群内机器人数量失控（jarvis、银河、radar-agent 并存），消息有用率低；根因诊断耗时 5–8 分钟，老机器人易用性差；Agent 技术正颠覆告警处理范式，需探索下一代产品形态。</p>
+      </div>
+      <div class="card dark">
+        <div class="card-icon">🎯</div>
+        <h3>产品目标</h3>
+        <p style="color:#a89e94"><strong style="color:#ff9a55">主动发现</strong><br>让系统故障能被雷达主动感知，而非人工发现。<br><br><strong style="color:#ff9a55">智能诊断</strong><br>基于 AI 算法自动分析根因，减少排查时间。<br><br><strong style="color:#ff9a55">协同作战·快速止损</strong><br>自动拉群、角色分工，提供自动化预案推荐，持续缩短 MTTR（故障处理时长）。<br><br><strong style="color:#ff9a55">Radar AI Agent 目标</strong><br>以 Radar-Agent 为基础，承接事件群机器人统一收敛，成为故障响应的唯一 AI 入口。后期总指挥签到时，手上已有一份完整的诊断报告、止损方案和影响评估。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 核心链路 -->
+  <section class="fade-in">
+    <div class="sec-label">Product Design</div>
+    <div class="sec-title">全链路闭环设计</div>
+    <div class="flow">
+<div class="flow-step">节点触发告警</div>
+<div class="flow-arrow">→</div>
+<div class="flow-step">告警通知</div>
+<div class="flow-arrow">→</div>
+<div class="flow-step">事件聚合</div>
+<div class="flow-arrow">→</div>
+<div class="flow-step">根因诊断</div>
+<div class="flow-arrow">→</div>
+<div class="flow-step">Warroom 协同</div>
+<div class="flow-arrow">→</div>
+<div class="flow-step">止损恢复</div>
+<div class="flow-arrow">→</div>
+<div class="flow-step">故障复盘</div>
+    </div>
+    <div style="margin-top:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--card);">
+      <div style="padding:14px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;">
+        <span style="font-size:10px;font-weight:950;color:var(--orange);letter-spacing:.12em;text-transform:uppercase;">Platform Architecture</span>
+        <span style="font-size:11px;color:var(--muted);">Radar 故障管理平台全景架构</span>
+      </div>
+      <img src="images/radar_arch.png" alt="Radar 故障管理平台架构图" style="width:100%;max-width:500px;display:block;margin:0 auto;cursor:zoom-in;transition:transform .2s" onclick="document.getElementById('arch-lightbox').style.display='flex'" />
+      <!-- Lightbox -->
+      <div id="arch-lightbox" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+        <img src="images/radar_arch.png" alt="Radar 故障管理平台架构图" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 核心功能 TAB -->
+  <section class="fade-in" id="features-section">
+    <div class="sec-label">Core Features</div>
+    <div class="sec-title">三大核心功能方案</div>
+
+    <!-- Tab 导航 -->
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="warroom">
+        <span class="tab-icon">🚨</span>
+        <span class="tab-name">Warroom</span>
+        <span class="tab-sub">故障指挥中心</span>
+      </button>
+      <button class="tab-btn" data-tab="alert">
+        <span class="tab-icon">🔔</span>
+        <span class="tab-name">告警降噪</span>
+        <span class="tab-sub">通用告警体系</span>
+      </button>
+      <button class="tab-btn" data-tab="agent">
+        <span class="tab-icon">🤖</span>
+        <span class="tab-name">Radar-Agent</span>
+        <span class="tab-sub">AI 智能助手</span>
+      </button>
+    </div>
+
+    <!-- Tab 内容 -->
+    <div class="tab-content">
+
+      <!-- Warroom -->
+      <div class="tab-panel active" id="tab-warroom">
+        <div class="tp-header">
+          <div class="tp-summary">对标阿里、腾讯、华为最佳实践，将标准化故障处理动作固化到雷达系统，建设可供多角色共同使用的投屏故障处理平台，让故障关注人直观看到处理进展，让故障处理人高效跟进恢复、避免遗漏。</div>
+        </div>
+
+        <div class="cards-2col" style="margin-top:20px">
+          <div class="card">
+            <div class="card-icon">❓</div>
+            <h3>为什么要做 Warroom？</h3>
+            <p>故障处理对人要求极高，基础动作缺失会直接导致处理延迟。需将标准化流程固化到系统中，通过工具协助总指挥高效处理故障，避免人为遗漏。</p>
+          </div>
+          <div class="card dark">
+            <div class="card-icon">🔍</div>
+            <h3>竞品调研</h3>
+            <p style="color:#a89e94"><strong style="color:#ff9a55">阿里云</strong>：以业务影响定级，有专属故障处理主页展示进展与影响范围，重大故障处理更具针对性。<br><br><strong style="color:#ff9a55">腾讯云</strong>：基于故障看板做信息拉通与渠道搭建，故障影响依赖人员主动上报。</p>
+          </div>
+        </div>
+
+        <div class="tp-divider"></div>
+        <div class="tp-block-title">核心角色职责</div>
+        <div class="cards-3col">
+          <div class="feat-item">
+            <div class="feat-label">总指挥 / 专家总指挥</div>
+            <p>以快速恢复业务为目标，收集止损方案与处理进展，进行关键决策并分派任务；专家总指挥额外承接 S4+ 重大故障，保障处理符合预期。</p>
+          </div>
+          <div class="feat-item">
+            <div class="feat-label">协控</div>
+            <p>总指挥的协同官：提醒总指挥协调止损方案和及时升级；提取关键信息定时同步进展；根据故障级别扩大通告范围；合并关联事件并协助引入合适人员。</p>
+          </div>
+          <div class="feat-item">
+            <div class="feat-label">处理人</div>
+            <p>实际解决问题的人，分为快速恢复负责人（输出止损预案并执行）和问题诊断负责人（排查根因）。向总指挥反馈异常现状、止损动作和执行进展。</p>
+          </div>
+        </div>
+
+        <div class="tp-divider"></div>
+        <div class="tp-block-title">故障处理原则</div>
+        <div class="cards-2col">
+          <div class="card" style="padding:18px 22px">
+            <p style="font-size:13px;line-height:2">
+              <strong>先通报，后处理</strong> — 通报让更多相关人员关注，主动参与，提升协同效率。<br>
+              <strong>先止损，后归因</strong> — 第一时间降低用户影响，再考虑根治方案。<br>
+              <strong>有变更，先回滚</strong> — 怀疑与变更相关且回滚无影响时，优先回滚。<br>
+              <strong>预定级，要从重</strong> — 获得更多支持、尽快解决，避免事态恶化。
+            </p>
+          </div>
+          <div class="card dark" style="padding:18px 22px">
+            <p style="color:#a89e94;font-size:13px;line-height:2">
+              <strong style="color:#ff9a55">关键角色</strong>：如何快速处理故障？自己该做什么、怎么做？<br>
+              <strong style="color:#ff9a55">被影响方</strong>：上报影响情况，被影响时能被快速周知。<br>
+              <strong style="color:#ff9a55">管理角色</strong>：关注事件背景、当前问题、止损情况、影响范围和恢复预期。
+            </p>
+          </div>
+        </div>
+
+        <div class="tp-divider"></div>
+        <div class="tp-block-title">核心功能模块</div>
+
+        <!-- 01 Warroom 投屏全览 -->
+        <div style="margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
+          <div style="cursor:zoom-in" onclick="document.getElementById('lb-warroom').style.display='flex'">
+            <img src="images/组 3282@1.5x.png" alt="Warroom 投屏全览" style="width:100%;display:block;max-height:280px;object-fit:cover;object-position:top" />
+          </div>
+          <div style="padding:16px 20px 18px">
+            <div class="feat-label" style="margin-bottom:6px">01 · Warroom 投屏全览</div>
+            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">整合处理流程指引、核心大盘指标、影响范围、任务列表、告警收敛与时间线，形成可多角色共用的投屏故障处理主页。<strong style="color:var(--text)">我的核心价值：</strong>从0到1定义投屏页信息架构，基于三类角色（关键处理角色 / 被影响方 / 管理者）的差异化信息需求，设计分区聚焦的页面布局，让总指挥无需在多系统间切换，10分钟内说清"多大影响、多久恢复"。</p>
+          </div>
+          <div id="lb-warroom" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+            <img src="images/组 3282@1.5x.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+          </div>
+        </div>
+
+        <!-- 02 处理流程指引 -->
+        <div style="margin-bottom:20px;border-radius:16px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card);padding:16px 20px 18px">
+          <div class="feat-label" style="margin-bottom:6px">02 · 处理流程指引</div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">按事件等级（E 事件 / S9+）展示标准化处理步骤，会议管理、预估定级、故障通告等关键动作随执行自动更新状态；评估影响、任务拆分等节点需角色手动确认。<strong style="color:var(--text)">我的核心价值：</strong>将 SRE 团队沉淀的总指挥/协控必做 List 可视化为流程引导，确保基础动作不因人员差异而遗漏，降低对个人经验的依赖。</p>
+        </div>
+
+        <!-- 03 时间线 -->
+        <div style="margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line)">
+            <div style="overflow:hidden;border-right:1px solid var(--line)">
+              <img src="images/74c9a44713fa800ac0d7edc7e794f035353556.png" alt="时间线处理视图" style="width:100%;display:block;max-height:200px;object-fit:cover;object-position:top;cursor:zoom-in" onclick="document.getElementById('lb-timeline1').style.display='flex'" />
+              <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">处理视图 · 关键节点 + 指标趋势</div>
+            </div>
+            <div style="overflow:hidden">
+              <img src="images/2d55f944ac07136fccfe1121a0c3a22f1084251.png" alt="时间线管理视图" style="width:100%;display:block;max-height:200px;object-fit:cover;object-position:top;cursor:zoom-in" onclick="document.getElementById('lb-timeline2').style.display='flex'" />
+              <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">管理视图 · 操作追踪 + AI 分析入口</div>
+            </div>
+          </div>
+          <div style="padding:16px 20px 18px">
+            <div class="feat-label" style="margin-bottom:6px">03 · 时间线（处理视图 + 管理视图）</div>
+            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">处理视图：以时间轴串联发生/发现、创建雷达、通告、定级、总指挥签到、完成止损等关键节点，叠加告警量趋势与核心大盘指标，处理人一眼掌握进展与指标走势。管理视图：右侧聚合所有操作记录（指派、通告、会议、变更等）并提供 AI 智能分析入口。<strong style="color:var(--text)">我的核心价值：</strong>重构时间线信息层级，将原本分散在多处的故障上下文整合为一个可追溯的完整叙事，让管理者无需问人即可获取现状。</p>
+          </div>
+          <div id="lb-timeline1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+            <img src="images/74c9a44713fa800ac0d7edc7e794f035353556.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+          </div>
+          <div id="lb-timeline2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+            <img src="images/2d55f944ac07136fccfe1121a0c3a22f1084251.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+          </div>
+        </div>
+
+        <!-- 04 影响范围 -->
+        <div style="margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line)">
+            <div style="overflow:hidden;border-right:1px solid var(--line)">
+              <img src="images/fad496db07fbb494a1e0aeeeda3e021c155522.png" alt="影响范围填报" style="width:100%;display:block;max-height:200px;object-fit:cover;object-position:top;cursor:zoom-in" onclick="document.getElementById('lb-impact1').style.display='flex'" />
+              <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">影响范围填报 · 结构化上报</div>
+            </div>
+            <div style="overflow:hidden">
+              <img src="images/3727ecffd23f99262a7676d626a8a90d666249.png" alt="影响范围总览" style="width:100%;display:block;max-height:200px;object-fit:cover;object-position:top;cursor:zoom-in" onclick="document.getElementById('lb-impact2').style.display='flex'" />
+              <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">影响范围总览 · AI 摘要 + 全局止损进度</div>
+            </div>
+          </div>
+          <div style="padding:16px 20px 18px">
+            <div class="feat-label" style="margin-bottom:6px">04 · 影响范围填报 &amp; 总览</div>
+            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">受影响方结构化填写：业务影响描述、被影响监控指标（如订单量）、受影响服务 Appkey，并标注恢复状态。总览汇总全部业务/组件的告警数、AI 分析摘要、处理 SRE 与恢复进度。<strong style="color:var(--text)">我的核心价值：</strong>将原本散落在群聊中的影响上报收敛为结构化数据，AI 自动生成影响摘要，总指挥无需逐个询问即可全局感知止损进度，大幅降低信息收集成本。</p>
+          </div>
+          <div id="lb-impact1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+            <img src="images/fad496db07fbb494a1e0aeeeda3e021c155522.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+          </div>
+          <div id="lb-impact2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+            <img src="images/3727ecffd23f99262a7676d626a8a90d666249.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 告警降噪 -->
+      <div class="tab-panel" id="tab-alert">
+        <div class="tp-header">
+          <div class="tp-summary">建立五层降噪机制，让监控平台专注监控，Radar 专注通知策略，SRE 只接收真正需要关注的告警，告警噪音减少 50%+。</div>
+        </div>
+        <div class="cards-2col" style="margin-top:20px">
+          <div class="card">
+            <div class="card-icon">🔀</div>
+            <h3>对监控平台的价值</h3>
+            <p>划清边界：监控平台专注监控规则与异常判断，不再管理通知方式和通知人。AC 统一管理通知策略并执行通知动作，让告警触达用户，两侧职责清晰分离。</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">👤</div>
+            <h3>对用户的价值</h3>
+            <p>一次通知配置变更，可复用于多个监控平台，降低配置成本。支持告警值班机制与升级通知，实现更精准的立即通知和升级通知，提供全局通知配置与监控规则关联关系视图。</p>
+          </div>
+        </div>
+        <div class="tp-divider"></div>
+        <div class="tp-block-title">五层降噪机制</div>
+        <div class="noise-list">
+          <div class="noise-item">
+            <div class="noise-num">01</div>
+            <div class="noise-body">
+              <div class="noise-name">静默规则</div>
+              <p>屏蔽预期内事件导致的无需关注告警，如演练、压测、服务维护期间的告警通知，支持批量静默操作。</p>
+            </div>
+          </div>
+          <div class="noise-item">
+            <div class="noise-num">02</div>
+            <div class="noise-body">
+              <div class="noise-name">抑制规则</div>
+              <p>抑制关联告警通知：A 告警出现时自动屏蔽 B 告警（如同主机 ping.alive 触发时屏蔽 ping.loss），只发主告警。</p>
+            </div>
+          </div>
+          <div class="noise-item">
+            <div class="noise-num">03</div>
+            <div class="noise-body">
+              <div class="noise-name">聚合规则</div>
+              <p>按时间梯度统一发送符合聚合规则的告警，减少大象通知渠道的重复告警和相关告警对用户的持续干扰。</p>
+            </div>
+          </div>
+          <div class="noise-item">
+            <div class="noise-num">04</div>
+            <div class="noise-body">
+              <div class="noise-name">大象窗口</div>
+              <p>配置时间窗口内的最大告警接收量，超出上限的告警延后汇总通知，有效遏制短时间内的告警轰炸。</p>
+            </div>
+          </div>
+          <div class="noise-item">
+            <div class="noise-num">05</div>
+            <div class="noise-body">
+              <div class="noise-name">告警拒收</div>
+              <p>收到预期外的告警可直接拒收，确保后续不再接收不关注的告警，持续净化个人告警接收列表。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Radar-Agent -->
+      <div class="tab-panel" id="tab-agent">
+        <div class="tp-header">
+          <div class="tp-summary">解决事件群 AI 竞态问题，将 10+ 个 AI 机器人收敛为统一可信入口。用渐进式分层输出，30s 给出方向，2min 给出完整报告。</div>
+        </div>
+        <div class="cards-2col" style="margin-top:20px">
+          <div class="card">
+            <div class="card-icon">⚔️</div>
+            <h3>核心矛盾：速度 vs 准确性</h3>
+            <p>故障每多持续 1 分钟，业务损失就在累积——需要快。但错误诊断可能导致错误止损，让问题更严重——需要准。人类专家能做到又快又准，但无法 7×24 在线处理多个并发事件。</p>
+          </div>
+          <div class="card dark">
+            <div class="card-icon">🎯</div>
+            <h3 style="color:#fff">产品定位</h3>
+            <p style="color:#a89e94">不是替代人做决策，而是让人在 30 秒内拿到做决策所需的全部信息。当前诊断准确率 55-65%，2026 年目标：成为故障响应的「唯一 AI 信息中枢」，决策权留给人。</p>
+          </div>
+        </div>
+        <div class="tp-divider"></div>
+        <div class="tp-block-title">渐进式分层输出策略</div>
+        <div class="progress-layers">
+          <div class="layer">
+            <div class="layer-tag">第一层 ≤ 30s</div>
+            <div class="layer-title">高置信快速判断</div>
+            <p>输出影响范围概述 + 最近相关变更 + 相似历史事件 + 初步方向（如"高度疑似配置变更引起"）。数据来源：告警聚合 + MCM 变更匹配 + 历史事件向量检索，均为低延迟操作。只说高置信度信息，宁可少说，不说错。</p>
+          </div>
+          <div class="layer-arrow">↓</div>
+          <div class="layer">
+            <div class="layer-tag">第二层 ≤ 2min</div>
+            <div class="layer-title">详细诊断报告</div>
+            <p>输出完整根因分析 + Raptor 指标佐证 + 影响面评估 + 止损方案推荐。数据来源：Raptor 多维指标 + 拓扑分析 + LLM 深度推理。追求准确和完整，是 SRE 做决策的主要依据。</p>
+          </div>
+          <div class="layer-arrow">↓</div>
+          <div class="layer">
+            <div class="layer-tag">第三层 持续更新</div>
+            <div class="layer-title">动态补充</div>
+            <p>根据止损进展更新影响评估 + 补充新发现的关联信息 + 确认恢复状态。事件是动态的，诊断也不是静态的，持续跟进直至故障闭环。</p>
+          </div>
+        </div>
+        <div class="tp-divider"></div>
+        <div class="tp-block-title">三阶段演进路线</div>
+        <div class="phases" style="margin-top:4px">
+          <div class="phase">
+            <span class="phase-num">Plan 1</span>
+            <div>
+              <h3>能力建设 — 成为靠谱的研判助手</h3>
+              <p>稳定 LLM 调用（≥ 99%），告警处理模块从"信息查询"增强为"智能研判"，服务级诊断从 5-8min 降至 ≤ 2min。</p>
+              <div class="metric-list">
+                <div class="m-item"><strong>≥99%</strong>LLM 调用成功率</div>
+                <div class="m-item"><strong>≥70%</strong>告警研判准确率</div>
+                <div class="m-item"><strong>≤2min</strong>服务级诊断 P90</div>
+                <div class="m-item"><strong>≥55%</strong>诊断准确率基线</div>
+              </div>
+            </div>
+          </div>
+          <div class="phase">
+            <span class="phase-num">Plan 2</span>
+            <div>
+              <h3>收敛 — AI 竞态解决 + 事件群信息治理</h3>
+              <p>实现"事件群 AI = 1"，通过试点数据证明"合一"效果更优，获组织支持，与 jarvis、银河团队达成迁移方案。</p>
+            </div>
+          </div>
+          <div class="phase">
+            <span class="phase-num">Plan 3</span>
+            <div>
+              <h3>闭环 — 全链路贯通 + COE 自动生成</h3>
+              <p>四大模块数据打通，形成"告警研判 → 诊断定位 → 止损执行 → 协同管理 → COE 复盘"自动流转。诊断准确率 ≥ 75%，COE 从 2-4 小时缩至自动输出。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 我的角色 -->
+  <section class="fade-in">
+    <div class="sec-label">My Role</div>
+    <div class="sec-title">我的核心贡献</div>
+    <div class="cards-3col">
+      <div class="card fade-in">
+        <div class="card-icon">🏗️</div>
+        <h3>从 0 到 1 产品规划</h3>
+        <p>主导 Radar 全链路产品设计，定义告警→事件→故障→RCA→通告的核心流程，建立公司级统一故障处理标准。</p>
+      </div>
+      <div class="card fade-in">
+        <div class="card-icon">🤝</div>
+        <h3>跨团队协同推进</h3>
+        <p>对标阿里、腾讯、华为行业最佳实践，协调 SRE、研发、运营多方资源，推动 Warroom 等核心功能从概念到落地。</p>
+      </div>
+      <div class="card fade-in">
+        <div class="card-icon">🔮</div>
+        <h3>AI 战略规划</h3>
+        <p>制定 Radar-Agent 三阶段演进策略，解决 AI 竞态核心矛盾，定义渐进式输出框架和 2026-2027 产品目标路径。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div style="text-align:center;padding:26px 0;font-size:11px;color:#bbb">© 2025 Cici Zhang · 张秀娟 · All Rights Reserved</div>
+
+<script>
+// Fade-in on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + target).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

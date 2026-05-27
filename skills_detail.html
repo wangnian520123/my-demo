@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Skills 广场 / MWS 全家桶运营｜Cici Zhang</title>
+<style>
+:root{
+  --bg:#f3eee5;--card:#fbf7ef;--ink:#121212;--muted:#686057;--line:#d7cbbc;
+  --orange:#ff5c24;--orange2:#ff9a55;--black:#111;--radius:22px;
+  --dark-bg:#0d1117;--dark-card:#161b24;--dark-border:#1e2730;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:14px}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line);backdrop-filter:blur(20px);background:rgba(243,238,229,.9)}
+.nav-inner{width:min(1060px,92vw);margin:auto;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;letter-spacing:-.03em;font-size:15px;display:flex;align-items:center;gap:6px}
+.logo-dot{width:7px;height:7px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--muted);padding:7px 14px;border:1px solid var(--line);border-radius:4px;transition:all .2s}
+.back-btn:hover{color:var(--ink);border-color:var(--ink)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+
+.wrap{width:min(1060px,92vw);margin:auto;padding-bottom:80px}
+
+/* HERO */
+.detail-hero{padding:56px 0 48px;border-bottom:1px solid var(--line)}
+.detail-badge{display:inline-flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:800;padding:4px 12px;border-radius:999px}
+.badge.type{background:rgba(255,92,36,.12);color:var(--orange)}
+.badge.dark{background:#1a1a1a;color:rgba(255,255,255,.6)}
+.detail-hero h1{font-size:48px;line-height:1.05;letter-spacing:-.05em;font-weight:950;margin-bottom:20px}
+.detail-hero h1 em{font-style:normal;color:var(--orange)}
+.detail-lead{font-size:15px;color:var(--muted);max-width:720px;line-height:1.8}
+
+/* COVER IMAGE */
+.hero-cover{width:100%;border-radius:20px;border:1px solid var(--line);box-shadow:0 8px 32px rgba(0,0,0,.1);display:block;margin-bottom:40px}
+
+/* SECTION */
+section{padding:44px 0;border-bottom:1px solid var(--line)}
+.sec-label{color:var(--orange);font-size:11px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sec-label::before{content:"";width:18px;height:2px;background:var(--orange);border-radius:999px}
+.sec-title{font-size:26px;font-weight:950;letter-spacing:-.04em;margin-bottom:16px}
+.sec-desc{font-size:13.5px;color:var(--muted);max-width:780px;line-height:1.85;margin-bottom:28px}
+
+/* CARDS */
+.cards-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cards-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;transition:box-shadow .22s,transform .22s}
+.card:hover{box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(-2px)}
+.card-icon{font-size:24px;margin-bottom:14px}
+.card h3{font-size:15px;font-weight:900;margin-bottom:10px}
+.card p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.card.dark{background:var(--black);color:#fff;border-color:#2a2a2a}
+.card.dark p{color:#a89e94}
+.card.dark h3{color:#fff}
+.card.highlight{border-color:rgba(255,92,36,.3);background:rgba(255,92,36,.04)}
+
+/* TAB SYSTEM */
+.tab-nav{display:flex;gap:10px;border-bottom:2px solid var(--line);padding-bottom:0;margin-bottom:28px}
+.tab-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px 22px 16px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;transition:all .2s;border-radius:10px 10px 0 0}
+.tab-btn:hover{background:rgba(255,92,36,.05)}
+.tab-btn.active{border-bottom-color:var(--orange);background:rgba(255,92,36,.06)}
+.tab-icon{font-size:20px;line-height:1}
+.tab-name{font-size:13px;font-weight:900;color:var(--ink)}
+.tab-sub{font-size:10px;color:var(--muted)}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* PHASE / STEP */
+.phases{display:flex;flex-direction:column;gap:14px}
+.phase{border:1px solid var(--line);border-radius:18px;padding:22px 28px;background:var(--card);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;transition:box-shadow .22s}
+.phase:hover{box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.phase-num{font-size:11px;font-weight:950;color:var(--orange);background:rgba(255,92,36,.1);padding:4px 12px;border-radius:999px;white-space:nowrap;margin-top:3px}
+.phase h3{font-size:14px;font-weight:900;margin-bottom:6px}
+.phase p{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* FLOW BAR */
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--black);border-radius:16px;padding:20px 24px;margin-top:4px}
+.flow-step{background:rgba(255,92,36,.2);border:1px solid rgba(255,92,36,.35);color:var(--orange2);padding:6px 16px;border-radius:999px;font-size:12px;font-weight:800}
+.flow-arrow{color:#666;font-size:14px}
+
+/* CHALLENGE TAG */
+.challenge-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.c-tag{font-size:11.5px;font-weight:800;padding:5px 14px;border-radius:999px;border:1px solid}
+.c-tag.problem{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.25);color:#dc2626}
+.c-tag.solution{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.25);color:#16a34a}
+
+/* LIFECYCLE CARDS */
+.lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+.lc-card{border-radius:18px;padding:22px 24px;border:1px solid var(--line);background:var(--card)}
+.lc-card.active{border-top:3px solid #16a34a}
+.lc-card.hold{border-top:3px solid #ca8a04}
+.lc-card.migrate{border-top:3px solid #2563eb}
+.lc-card.retire{border-top:3px solid #dc2626}
+.lc-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.lc-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.lc-dot.g{background:#16a34a}.lc-dot.y{background:#ca8a04}
+.lc-dot.b{background:#2563eb}.lc-dot.r{background:#dc2626}
+.lc-title{font-size:14px;font-weight:900}
+.lc-sub{font-size:10.5px;color:var(--muted);margin-top:1px}
+.lc-desc{font-size:12.5px;color:var(--muted);line-height:1.75}
+.lc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.lc-tag{font-size:10.5px;font-weight:800;padding:3px 10px;border-radius:999px;background:rgba(0,0,0,.05);color:var(--muted);border:1px solid var(--line)}
+
+/* SPEC TABLE */
+.spec-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+.spec-table th{background:rgba(255,92,36,.07);color:var(--orange);padding:10px 14px;text-align:left;font-weight:900;border-bottom:1px solid rgba(255,92,36,.15)}
+.spec-table td{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--muted);vertical-align:top}
+.spec-table tr:hover td{background:rgba(255,92,36,.02)}
+.bm{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:800;background:rgba(239,68,68,.1);color:#dc2626}
+.br{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:800;background:rgba(234,179,8,.1);color:#b45309}
+.bo{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:800;background:rgba(34,197,94,.1);color:#16a34a}
+
+/* INSIGHT QUOTE */
+.insight{border-left:3px solid var(--orange);padding:16px 22px;background:rgba(255,92,36,.04);border-radius:0 12px 12px 0;margin:20px 0;font-size:13.5px;color:var(--ink);line-height:1.8;font-style:italic}
+
+/* ROLE BLOCK */
+.role-block{background:var(--black);border-radius:20px;padding:32px;color:#fff;margin-top:4px}
+.role-block h3{font-size:18px;font-weight:950;margin-bottom:6px;color:#fff}
+.role-block .role-title{font-size:12px;color:var(--orange);font-weight:800;margin-bottom:16px}
+.role-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.role-tag{background:rgba(255,92,36,.15);border:1px solid rgba(255,92,36,.3);color:var(--orange2);padding:5px 14px;border-radius:999px;font-size:11px;font-weight:800}
+
+@media(max-width:720px){
+  .detail-hero h1{font-size:30px}
+  .cards-2col,.cards-3col,.lc-grid{grid-template-columns:1fr}
+  .tab-btn{padding:10px 14px 12px}
+  .tab-name{font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-dot"></span>Cici Zhang · Portfolio</div>
+    <a class="back-btn" href="cici_pm_portfolio_bold_black_orange.html">← 返回作品集</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="detail-hero">
+    <div class="detail-badge">
+      <span class="badge type">平台运营</span>
+      <span class="badge dark">MWS Skills 广场</span>
+      <span class="badge dark">生命周期治理</span>
+      <span class="badge dark">AI 工具生态</span>
+    </div>
+    <h1>MWS <em>Skills 广场</em><br/>全家桶运营体系</h1>
+    <p class="detail-lead">从 0 到 1 建立 MWS Skills 生态的运营机制——制定准入规范、安全扫描标准、场景化运营策略，以及覆盖「主推 → 维持 → 迁移 → 淘汰」全周期的生命周期治理方案，推动 Skills 从野蛮生长走向有序运营。</p>
+  </div>
+
+  <!-- TAB SECTION -->
+  <section style="border-bottom:none;padding-top:44px">
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab(0,this)">
+        <span class="tab-icon">🔍</span>
+        <span class="tab-name">背景与挑战</span>
+        <span class="tab-sub">问题 → 目标</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(1,this)">
+        <span class="tab-icon">📋</span>
+        <span class="tab-name">准入与安全</span>
+        <span class="tab-sub">质量门槛</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(2,this)">
+        <span class="tab-icon">♻️</span>
+        <span class="tab-name">生命周期治理</span>
+        <span class="tab-sub">四分层 + 软下线</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(3,this)">
+        <span class="tab-icon">📣</span>
+        <span class="tab-name">知名度运营</span>
+        <span class="tab-sub">扩张策略</span>
+      </button>
+    </div>
+
+    <!-- ===== TAB 0: 背景与挑战 ===== -->
+    <div class="tab-panel active" id="tab-0">
+      <div class="sec-label">Background</div>
+      <div class="sec-title">生态快速扩张后的治理困境</div>
+      <div class="sec-desc">MWS Skills 广场是美团商家端的 AI 能力聚合平台，随着接入 Skill 数量快速增长，平台陷入了「有量无质」的困境：缺乏统一的质量标准，低质量/低活跃 Skill 大量堆积，安全审查机制缺失，且没有任何退出机制，废弃资产长期占用平台资源。</div>
+
+      <div class="challenge-tags">
+        <span class="c-tag problem">❌ 无统一准入标准</span>
+        <span class="c-tag problem">❌ 安全审查机制缺失</span>
+        <span class="c-tag problem">❌ 低活跃 Skill 大量堆积</span>
+        <span class="c-tag problem">❌ 缺乏退出 / 下线机制</span>
+        <span class="c-tag problem">❌ 商家对 Skills 认知度低</span>
+        <span class="c-tag solution">✅ 建立准入规范体系</span>
+        <span class="c-tag solution">✅ 安全扫描纳入上线流程</span>
+        <span class="c-tag solution">✅ 四分层生命周期治理</span>
+        <span class="c-tag solution">✅ 软下线机制保障有序退场</span>
+      </div>
+
+      <div class="sec-label" style="margin-top:32px">Strategy</div>
+      <div class="sec-title" style="font-size:20px">三条主线并行推进</div>
+      <div class="phases">
+        <div class="phase">
+          <span class="phase-num">① 建规范</span>
+          <div>
+            <h3>制定准入标准，明确质量底线</h3>
+            <p>从基础信息、能力质量、安全合规、体验质量四个维度出发，建立必选 / 推荐 / 可选三级准入指标体系，形成可量化的上架评审标准。</p>
+          </div>
+        </div>
+        <div class="phase">
+          <span class="phase-num">② 建治理</span>
+          <div>
+            <h3>生命周期分层，存量动态优化</h3>
+            <p>建立「主推 / 维持 / 迁移 / 淘汰」四分层模型，配套软下线机制，让 Skill 资产能够有序流转，而非无限堆积。</p>
+          </div>
+        </div>
+        <div class="phase">
+          <span class="phase-num">③ 建认知</span>
+          <div>
+            <h3>场景化运营 + 品牌扩张</h3>
+            <p>通过「MWS 官方 Skills 全家桶」品牌化包装与多渠道触达策略，提升商家端对 Skills 的认知度与使用意愿。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight" style="margin-top:32px">
+        Skills 广场的本质不是工具的简单陈列，而是场景化分发 + 质量保障 + 生态激励的有机体。运营的核心是让每个上架的 Skill 都有存在的理由，让每个离场的 Skill 都有体面的退出方式。
+      </div>
+    </div>
+
+    <!-- ===== TAB 1: 准入与安全 ===== -->
+    <div class="tab-panel" id="tab-1">
+      <div class="sec-label">Admission Standards</div>
+      <div class="sec-title">准入规范体系</div>
+      <div class="sec-desc">制定 MWS Skills 上架准入标准，分必选（must）、推荐（recommended）、可选（optional）三级，覆盖基础信息、能力质量、安全合规、体验质量四个维度。</div>
+
+      <table class="spec-table">
+        <thead>
+          <tr><th>维度</th><th>检查项</th><th>级别</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>基础信息</td>
+            <td>名称、描述、使用场景</td>
+            <td><span class="bm">必选</span></td>
+            <td>名称简洁，描述清晰说明能做什么</td>
+          </tr>
+          <tr>
+            <td>基础信息</td>
+            <td>头图 / 封面</td>
+            <td><span class="bm">必选</span></td>
+            <td>符合设计规范要求</td>
+          </tr>
+          <tr>
+            <td>能力质量</td>
+            <td>核心功能可用性验证</td>
+            <td><span class="bm">必选</span></td>
+            <td>上架前须通过基本冒烟测试</td>
+          </tr>
+          <tr>
+            <td>能力质量</td>
+            <td>响应时间</td>
+            <td><span class="bm">必选</span></td>
+            <td>满足平台响应时间基线要求</td>
+          </tr>
+          <tr>
+            <td>安全合规</td>
+            <td>安全扫描通过</td>
+            <td><span class="bm">必选</span></td>
+            <td>mws-skill-kit 扫描无高危项</td>
+          </tr>
+          <tr>
+            <td>安全合规</td>
+            <td>数据权限声明</td>
+            <td><span class="bm">必选</span></td>
+            <td>明确申报所访问的数据类型与范围</td>
+          </tr>
+          <tr>
+            <td>体验质量</td>
+            <td>错误处理与降级策略</td>
+            <td><span class="br">推荐</span></td>
+            <td>提供友好的错误提示，支持兜底回复</td>
+          </tr>
+          <tr>
+            <td>体验质量</td>
+            <td>多轮对话支持</td>
+            <td><span class="br">推荐</span></td>
+            <td>能识别上下文意图，避免频繁重复询问</td>
+          </tr>
+          <tr>
+            <td>生态共建</td>
+            <td>接入数据统计</td>
+            <td><span class="br">推荐</span></td>
+            <td>上报使用指标，便于平台健康度监控</td>
+          </tr>
+          <tr>
+            <td>生态共建</td>
+            <td>开发者文档</td>
+            <td><span class="bo">可选</span></td>
+            <td>提供调试说明，方便审核与集成测试</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sec-label" style="margin-top:40px">Security</div>
+      <div class="sec-title" style="font-size:20px">安全扫描机制（mws-skill-kit）</div>
+      <div class="sec-desc">围绕 AI Skill 特有的安全风险，建立自动化扫描能力，纳入上架 CI 流程，新 Skill 上线前须通过检测。</div>
+
+      <div class="cards-2col">
+        <div class="card">
+          <div class="card-icon">🛡️</div>
+          <h3>提示词注入检测</h3>
+          <p>识别 System Prompt 中的恶意指令覆盖、角色劫持等攻击模式，防止 Skill 被外部输入绕过安全约束。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔐</div>
+          <h3>敏感数据泄露扫描</h3>
+          <p>检测 Skill 输出是否包含用户隐私、商家经营数据等敏感字段，防止数据越界流出。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚖️</div>
+          <h3>内容合规性校验</h3>
+          <p>对 Skill 功能描述与输出内容进行合规审查，过滤违禁信息、虚假宣传等违规表述。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔗</div>
+          <h3>外部依赖风险评估</h3>
+          <p>扫描 Skill 调用的外部 API / 工具链，识别不可信来源与接口变更风险。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB 2: 生命周期治理 ===== -->
+    <div class="tab-panel" id="tab-2">
+      <div class="sec-label">Lifecycle Management</div>
+      <div class="sec-title">四分层生命周期模型</div>
+      <div class="sec-desc">针对存量 Skill 资产膨胀问题，建立「主推 / 维持 / 迁移 / 淘汰」四分层模型，定期对 Skill 进行健康度评估并动态调整分层状态。</div>
+
+      <div class="lc-grid">
+        <div class="lc-card active">
+          <div class="lc-head">
+            <span class="lc-dot g"></span>
+            <div>
+              <div class="lc-title">主推（Active）</div>
+              <div class="lc-sub">重点资源倾斜</div>
+            </div>
+          </div>
+          <p class="lc-desc">高质量、高活跃、用户反馈好的 Skill，享有搜索加权、场景内置推荐、首页精选等平台资源倾斜。</p>
+          <div class="lc-tags">
+            <span class="lc-tag">搜索加权</span>
+            <span class="lc-tag">场景内置</span>
+            <span class="lc-tag">精选推荐</span>
+          </div>
+        </div>
+
+        <div class="lc-card hold">
+          <div class="lc-head">
+            <span class="lc-dot y"></span>
+            <div>
+              <div class="lc-title">维持（Hold）</div>
+              <div class="lc-sub">自然流量，无额外投入</div>
+            </div>
+          </div>
+          <p class="lc-desc">功能基本可用，活跃度或质量评分未达主推门槛。保持正常上架状态，不主动推荐，依赖用户搜索发现。</p>
+          <div class="lc-tags">
+            <span class="lc-tag">正常展示</span>
+            <span class="lc-tag">支持搜索</span>
+            <span class="lc-tag">定期复审</span>
+          </div>
+        </div>
+
+        <div class="lc-card migrate">
+          <div class="lc-head">
+            <span class="lc-dot b"></span>
+            <div>
+              <div class="lc-title">迁移（Migrate）</div>
+              <div class="lc-sub">能力合并 / 替代</div>
+            </div>
+          </div>
+          <p class="lc-desc">核心能力已被更优 Skill 覆盖，或与其他 Skill 高度重叠。平台联系开发者完成能力迁移，展示替代推荐引导用户转移。</p>
+          <div class="lc-tags">
+            <span class="lc-tag">开发者通知</span>
+            <span class="lc-tag">替代引导</span>
+            <span class="lc-tag">过渡期保护</span>
+          </div>
+        </div>
+
+        <div class="lc-card retire">
+          <div class="lc-head">
+            <span class="lc-dot r"></span>
+            <div>
+              <div class="lc-title">淘汰（Retire）</div>
+              <div class="lc-sub">软下线 → 正式下架</div>
+            </div>
+          </div>
+          <p class="lc-desc">长期低活跃、高错误率或已停止维护，经评估无改善可能。按软下线流程完成用户过渡后正式下架。</p>
+          <div class="lc-tags">
+            <span class="lc-tag">停止推荐</span>
+            <span class="lc-tag">软下线通知</span>
+            <span class="lc-tag">保护期</span>
+            <span class="lc-tag">正式下架</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-label" style="margin-top:44px">Soft Deprecation</div>
+      <div class="sec-title" style="font-size:20px">软下线机制</div>
+      <div class="sec-desc">进入「淘汰」状态的 Skill 不直接强制下架，而是经历完整的软下线流程，保障存量用户使用连续性。</div>
+
+      <div class="phases">
+        <div class="phase">
+          <span class="phase-num">Step 1</span>
+          <div>
+            <h3>判定触发</h3>
+            <p>系统检测到 Skill 满足淘汰条件（持续低活跃、高错误率或长期无维护），由运营人工确认后启动流程。</p>
+          </div>
+        </div>
+        <div class="phase">
+          <span class="phase-num">Step 2</span>
+          <div>
+            <h3>开发者通知（T+0）</h3>
+            <p>通过大象消息通知 Skill 开发者，说明下架原因，提供改善窗口期，开发者可申诉或提交改进计划。</p>
+          </div>
+        </div>
+        <div class="phase">
+          <span class="phase-num">Step 3</span>
+          <div>
+            <h3>软下线状态</h3>
+            <p>Skill 进入「即将下架」状态：停止对新用户推荐，存量用户仍可正常使用；详情页展示下架倒计时提示，引导迁移至替代方案。</p>
+          </div>
+        </div>
+        <div class="phase">
+          <span class="phase-num">Step 4</span>
+          <div>
+            <h3>正式下架</h3>
+            <p>保护期结束后，Skill 从广场下架，历史使用数据归档留存。开发者可申请恢复，但须重新通过准入审核。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB 3: 知名度运营 ===== -->
+    <div class="tab-panel" id="tab-3">
+      <div class="sec-label">Growth Operations</div>
+      <div class="sec-title">知名度扩张策略</div>
+      <div class="sec-desc">针对「商家对 Skills 认知度低」的核心问题，制定 MWS 官方 Skills 知名度扩张计划，通过品牌化包装与多渠道触达，在内部建立 Skills 的心智认知。</div>
+
+      <div class="flow">
+        <span class="flow-step">大象群 / 全家桶周报</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">商家端场景内置推荐</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">定向触达高潜用户</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">业务线联合推广</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">全家桶品牌沉淀</span>
+      </div>
+
+      <div class="cards-3col" style="margin-top:28px">
+        <div class="card highlight">
+          <div class="card-icon">🧩</div>
+          <h3>MWS 官方全家桶</h3>
+          <p>将多个高质量官方 Skill 打包品牌化呈现，降低商家选择成本，用「套装」逻辑提升整体认知效率。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏪</div>
+          <h3>场景内置推荐</h3>
+          <p>在商家端核心操作场景中内置对应 Skill 入口，以场景需求触发替代纯列表浏览，提升自然发现率。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📣</div>
+          <h3>内部渠道触达</h3>
+          <p>通过大象消息、全家桶周报等内部渠道定期推送优质 Skill 案例，在研发/运营人员中建立使用习惯。</p>
+        </div>
+      </div>
+
+      <div class="role-block" style="margin-top:32px">
+        <h3>我的角色</h3>
+        <div class="role-title">产品经理 · 全链路负责</div>
+        <p style="font-size:13px;color:#a89e94;line-height:1.8">从问题调研、规范制定、方案设计到推动落地，全程主导 Skills 广场运营体系建设。协调研发、数据、设计等多个团队，推动准入规范、安全扫描、生命周期治理方案逐步落地执行。</p>
+        <div class="role-tags">
+          <span class="role-tag">准入规范制定</span>
+          <span class="role-tag">安全机制设计</span>
+          <span class="role-tag">生命周期治理</span>
+          <span class="role-tag">场景化运营</span>
+          <span class="role-tag">品牌化推广</span>
+          <span class="role-tag">AI 工具平台</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</div><!-- /wrap -->
+
+<div style="text-align:center;padding:48px 20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px">
+  <a href="cici_pm_portfolio_bold_black_orange.html" style="color:var(--orange)">← 返回作品集首页</a>
+  <p style="margin-top:8px;font-size:11px">张修娟 · 产品经理作品集</p>
+</div>
+
+<script>
+function switchTab(idx, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + idx).classList.add('active');
+}
+</script>
+</body>
+</html>
