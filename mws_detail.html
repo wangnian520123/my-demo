@@ -92,11 +92,12 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
 
 /* COMPONENT ROW */
 .component-row{display:flex;flex-direction:column;gap:12px}
-.comp-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start;transition:box-shadow .2s}
+.comp-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:160px 1fr;gap:18px;align-items:start;transition:box-shadow .2s}
 .comp-item:hover{box-shadow:0 6px 20px rgba(0,0,0,.07)}
 .comp-tag{display:inline-block;font-size:10px;font-weight:900;color:var(--orange);background:rgba(255,92,36,.1);padding:4px 12px;border-radius:999px;white-space:nowrap;text-align:center}
 .comp-title{font-size:14px;font-weight:900;margin-bottom:5px}
 .comp-item p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.comp-thumb{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:8px;border:1px solid var(--line);margin-bottom:8px;display:block}
 
 /* BEFORE/AFTER */
 .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
@@ -154,7 +155,7 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
 <header class="nav">
   <div class="nav-inner">
     <div class="logo">Cici Zhang<div class="logo-dot"></div></div>
-    <a class="back-btn" href="cici_pm_portfolio_bold_black_orange.html">← 返回作品集</a>
+    <a class="back-btn" href="index.html">← 返回作品集</a>
   </div>
 </header>
 
@@ -165,16 +166,13 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
     <div class="detail-badge">
       <span class="badge dark">03</span>
       <span class="badge type">Design System</span>
-      <span class="badge type">B端体验</span>
-      <span class="badge type">0→1</span>
     </div>
     <h1>MWS<br>设计规范<em>体系</em></h1>
-    <p class="detail-lead">美团云统一设计语言与组件资产库，从 0 到 1 搭建覆盖多条产品线的 B 端设计规范，解决 UI 风格分散、研发还原度低、跨团队协同成本极高的核心问题。</p>
+    <p class="detail-lead">美团云统一设计语言与组件资产库，根据美团 MTD 原子级的规范搭建 MWS 业务组件规范，解决 UI 风格分散、研发还原度低、跨团队协同成本极高的核心问题。</p>
     <div class="stats-row">
-      <div class="stat-item"><strong>100+</strong><span>规范文档页面</span></div>
-      <div class="stat-item"><strong>400+</strong><span>Icon 资产</span></div>
-      <div class="stat-item"><strong>20+</strong><span>覆盖系统/产品线</span></div>
-      <div class="stat-item"><strong>20%+</strong><span>信息密度提升</span></div>
+      <div class="stat-item"><strong>30+</strong><span>规范文档页面</span></div>
+      <div class="stat-item"><strong>100+</strong><span>Icon 资产</span></div>
+      <div class="stat-item"><strong>40+</strong><span>覆盖系统/产品线</span></div>
     </div>
   </div>
 
@@ -244,12 +242,12 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
       <button class="tab-btn" data-tab="component">
         <span class="tab-icon">🧱</span>
         <span class="tab-name">组件规范</span>
-        <span class="tab-sub">100+ 页文档</span>
+        <span class="tab-sub">30+ 页文档</span>
       </button>
       <button class="tab-btn" data-tab="page-rebuild">
         <span class="tab-icon">🖥️</span>
-        <span class="tab-name">页面改版</span>
-        <span class="tab-sub">信息密度优化</span>
+<span class="tab-name">模板页面</span>
+<span class="tab-sub">4 类标准模板</span>
       </button>
       <button class="tab-btn" data-tab="collab">
         <span class="tab-icon">🤝</span>
@@ -294,87 +292,153 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
             <p>完整的 Token 体系支持明暗双主题切换，让色彩系统具备良好的可扩展性，为后续主题定制预留接口。</p>
           </div>
         </div>
+        <div style="display:flex;gap:12px;margin-top:20px">
+          <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid var(--line)">
+            <img src="mws_color.png" style="width:100%;display:block" alt="色彩规范" />
+          </div>
+          <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid var(--line)">
+            <img src="mws_grid.png" style="width:100%;display:block" alt="网格与栅格" />
+          </div>
+          <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid var(--line)">
+            <img src="mws_icon.png" style="width:100%;display:block" alt="图标体系" />
+          </div>
+        </div>
       </div>
 
       <!-- 组件规范 -->
       <div class="tab-panel" id="tab-component">
-        <div class="tp-summary">输出 100+ 页组件规范文档，覆盖从基础元素到复杂交互模式的完整规范，成为设计与研发之间的唯一"语言字典"。</div>
+        <div class="tp-summary">输出 30+ 页组件规范文档，覆盖从基础元素到复杂交互模式的完整规范，成为设计与研发之间的唯一"语言字典"。</div>
         <div class="tp-divider"></div>
-        <div class="tp-block-title">核心组件规范覆盖</div>
-        <div class="component-row">
-          <div class="comp-item">
-            <div class="comp-tag">数据录入</div>
-            <div>
-              <div class="comp-title">表单 · 输入框 · 选择器</div>
-              <p>规范各类输入态（默认/聚焦/错误/禁用/只读）、校验规则展示、必填标注方式，以及复杂表单的分组与折叠模式。</p>
-            </div>
-          </div>
-          <div class="comp-item">
-            <div class="comp-tag">数据展示</div>
-            <div>
-              <div class="comp-title">表格 · 列表 · 详情卡片</div>
-              <p>B 端最高频的数据展示场景。定义列宽分配策略、操作列规范、空状态设计、分页交互，以及超长内容的截断与展开方案。</p>
-            </div>
-          </div>
-          <div class="comp-item">
-            <div class="comp-tag">反馈通知</div>
-            <div>
-              <div class="comp-title">弹窗 · Toast · 空状态</div>
-              <p>统一确认弹窗、危险操作二次确认、批量操作反馈的交互模式，避免多产品线出现风格迥异的"自制弹窗"。</p>
-            </div>
-          </div>
-          <div class="comp-item">
-            <div class="comp-tag">导航结构</div>
-            <div>
-              <div class="comp-title">侧导航 · 顶导航 · 面包屑</div>
-              <p>针对美团云多层级产品结构，设计支持 2-4 级菜单的导航方案，并规范页面标题区、操作区的统一布局模式。</p>
-            </div>
-          </div>
-        </div>
+<div class="tp-block-title">核心组件规范覆盖</div>
+<div class="component-row">
+<div class="comp-item">
+<div>
+<img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/01-数据表格-基础规范.jpg" alt="数据表格">
+<div class="comp-tag">数据展示</div>
+</div>
+<div>
+<div class="comp-title">数据表格</div>
+<p>规范水平型与网格型两种表格样式，定义对齐方式、数据展示格式、颜色筛选、编辑态、hover 信息与适配规则，覆盖 B 端最高频数据展示场景。</p>
+</div>
+</div>
+<div class="comp-item">
+<div>
+<img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/02 标题@2x (2).png" alt="标题区块">
+<div class="comp-tag">页面结构</div>
+</div>
+<div>
+<div class="comp-title">标题区块</div>
+<p>统一页面标题区的组合规则，覆盖简单标题、详情页标题、表单区三种形态，规范操作按钮位置、面包屑展示与页面层级关系。</p>
+</div>
+</div>
+<div class="comp-item">
+<div>
+<img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/03_Tab区块@2x (2).png" alt="Tab区块">
+<div class="comp-tag">页面结构</div>
+</div>
+<div>
+<div class="comp-title">Tab 区块</div>
+<p>定义水平一级、二级、三级 Tab 的嵌套使用规范，区分内容 Tab 与功能 Tab，规范各层级配套表格的列宽、操作列与分页交互。</p>
+</div>
+</div>
+<div class="comp-item">
+<div>
+<img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/MWS导航 (2).png" alt="MWS导航">
+<div class="comp-tag">导航结构</div>
+</div>
+<div>
+<div class="comp-title">MWS 导航</div>
+<p>覆盖全局导航、多 Tab/AppKey 切换、环境切换、告警入口、帮助中心等顶导模式，适配美团云一级/二级/三级/四级多层级导航结构与侧边栏展开收起。</p>
+</div>
+</div>
+<div class="comp-item">
+<div>
+<img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/09 头像信息@2x.png" alt="用户信息">
+<div class="comp-tag">数据录入</div>
+</div>
+<div>
+<div class="comp-title">用户信息</div>
+<p>规范头像尺寸代码、单行与多行信息展示、交互卡片弹出样式，统一 B 端人员信息的视觉呈现与 hover 交互行为。</p>
+</div>
+</div>
+<div class="comp-item">
+<div>
+<img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/10 步骤条.png" alt="步骤条">
+<div class="comp-tag">流程引导</div>
+</div>
+<div>
+<div class="comp-title">步骤条</div>
+<p>定义进行中、已完成、错误三种状态的视觉规范，区分流程型与状态型两种形态，规范步骤条与配套操作区的联动展示方式。</p>
+</div>
+</div>
+<div class="comp-item">
+<div>
+<img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/11 对比.png" alt="对比组件">
+<div class="comp-tag">数据分析</div>
+</div>
+<div>
+<div class="comp-title">对比组件</div>
+<p>用于配置项变更前后的差异对比场景，定义常用样式与应用示例，规范高亮标注、新增/删除行的视觉区分方式。</p>
+</div>
+</div>
+<div class="comp-item">
+<div>
+<img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/12 穿梭框.png" alt="穿梭框">
+<div class="comp-tag">数据录入</div>
+</div>
+<div>
+<div class="comp-title">穿梭框</div>
+<p>支持基础样式、用户信息、表格等多种数据类型的穿梭选择，规范单选/多选状态、搜索筛选、已选列表的交互形态，覆盖应用示例场景。</p>
+</div>
+</div>
+</div>
       </div>
 
       <!-- 页面改版 -->
       <div class="tab-panel" id="tab-page-rebuild">
-        <div class="tp-summary">对现有产品页面进行系统性改版，在不改变功能的前提下，通过信息架构优化与视觉密度调整，让页面"更好用、更好看"。</div>
-        <div class="ba-grid" style="margin-top:20px">
-          <div class="ba-card before">
-            <div class="ba-label before-l">✗ 改版前</div>
-            <div class="ba-list">
-              <div class="ba-item">信息堆砌，无视觉层级，关键数据难以扫视</div>
-              <div class="ba-item">操作按钮散落各处，主次不明，误操作频发</div>
-              <div class="ba-item">各产品线字号、颜色随意，视觉噪音极大</div>
-              <div class="ba-item">表格列宽不合理，关键信息被截断</div>
-              <div class="ba-item">空状态、加载态缺失，用户困惑</div>
-            </div>
-          </div>
-          <div class="ba-card after">
-            <div class="ba-label after-l">✓ 改版后</div>
-            <div class="ba-list">
-              <div class="ba-item good">建立清晰信息层级，关键指标一眼可见</div>
-              <div class="ba-item good">主操作突出，危险操作二次确认，误操作↓</div>
-              <div class="ba-item good">统一视觉语言，信息密度提升 20%+</div>
-              <div class="ba-item good">智能列宽分配，内容完整展示</div>
-              <div class="ba-item good">完善各状态设计，体验闭环</div>
-            </div>
-          </div>
-        </div>
+        <div class="tp-summary">基于 MWS 规范沉淀 4 类标准模板页面，覆盖 B 端最高频场景，研发直接套用模板即可完成页面搭建，无需从零设计。</div>
         <div class="tp-divider"></div>
-        <div class="tp-block-title">典型改版场景</div>
-        <div class="cards-3col">
-          <div class="card">
-            <div class="card-icon">📊</div>
-            <h3>监控大盘</h3>
-            <p>重构指标卡片布局，引入趋势迷你图与状态色系，将原本密密麻麻的数字界面转变为可快速扫视的状态大盘。</p>
+        <div class="tp-block-title">模板页面类型</div>
+        <div class="component-row">
+          <div class="comp-item">
+            <div>
+              <img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/A 列表页使用说明 (2).png" alt="列表页模板">
+              <div class="comp-tag">列表页</div>
+            </div>
+            <div>
+              <div class="comp-title">列表页模板</div>
+              <p>覆盖基础列表、卡片列表、活动列表、卡片列表四种形态，规范筛选区、操作区、分页区的标准布局，以及行内操作、批量操作的交互模式。</p>
+            </div>
           </div>
-          <div class="card">
-            <div class="card-icon">📋</div>
-            <h3>资源列表</h3>
-            <p>统一资源列表的列定义优先级（名称→状态→关键参数→操作），批量操作区固定在顶部，大幅提升运维效率。</p>
+          <div class="comp-item">
+            <div>
+              <img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/A 表单页使用说明 (1).png" alt="表单页模板">
+              <div class="comp-tag">表单页</div>
+            </div>
+            <div>
+              <div class="comp-title">表单页模板</div>
+              <p>提供基础表单（单栏/双栏）、分组表单、分步表单、抽屉表单五种形态，规范必填标注、校验时机、操作按钮位置，适配新建、编辑、配置等场景。</p>
+            </div>
           </div>
-          <div class="card">
-            <div class="card-icon">⚙️</div>
-            <h3>配置中心</h3>
-            <p>将嵌套层级过深的配置页拆分为分步式表单，每步聚焦单一任务，配置完成率显著提升。</p>
+          <div class="comp-item">
+            <div>
+              <img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/01 详情页 (1).png" alt="详情页模板">
+              <div class="comp-tag">详情页</div>
+            </div>
+            <div>
+              <div class="comp-title">详情页模板</div>
+              <p>覆盖基础详情、分组详情、带 Tab 文本详情、带 Tab 列表详情、组合信息详情五种形态，统一字段展示密度、分区规则与操作区位置。</p>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div>
+              <img class="comp-thumb" src="/Users/zhangxiujuan/Downloads/A Dashboard页使用说明 (1).png" alt="Dashboard模板">
+              <div class="comp-tag">Dashboard</div>
+            </div>
+            <div>
+              <div class="comp-title">Dashboard 页模板</div>
+              <p>提供监控型与分析型两种大盘形态，规范指标卡片、趋势图、明细表的组合布局，以及时间筛选、维度切换、数据下钻的交互规范。</p>
+            </div>
           </div>
         </div>
       </div>
@@ -434,11 +498,11 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
         <h3>跨团队影响力</h3>
         <p>被基础研发设计中心称为「最懂美团云的设计师」，主导推动 MWS 规范在美团云多条产品线落地，成为跨团队设计协作标准。</p>
       </div>
-      <div class="card fade-in">
-        <div class="card-icon">🏆</div>
-        <h3>到店合作共赢奖</h3>
-        <p>MWS 体系的落地与推广成效获得公司级认可，荣获到店事业群合作共赢奖，是设计工具链规范化建设的里程碑项目。</p>
-      </div>
+<div class="card fade-in">
+<div class="card-icon">🏆</div>
+<h3>提升产研效率</h3>
+<p>MWS 规范体系显著降低设计与研发的沟通成本，组件复用率大幅提升，缩短页面交付周期，推动产研团队协同效率持续优化。</p>
+</div>
     </div>
   </section>
 
@@ -455,7 +519,7 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
       <div class="card fade-in">
         <div class="card-icon">🔧</div>
         <h3>组件库主导建设</h3>
-        <p>主导 100+ 页组件规范文档与 400+ 图标资产的制作，与研发团队深度协作，推动设计资产直接进入前端组件库，实现设计与研发的一致性。</p>
+        <p>主导 30+ 页组件规范文档与 400+ 图标资产的制作，与研发团队深度协作，推动设计资产直接进入前端组件库，实现设计与研发的一致性。</p>
       </div>
       <div class="card fade-in">
         <div class="card-icon">📊</div>

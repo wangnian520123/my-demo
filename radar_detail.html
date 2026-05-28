@@ -138,7 +138,7 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
 <header class="nav">
   <div class="nav-inner">
     <div class="logo">Cici Zhang<div class="logo-dot"></div></div>
-    <a class="back-btn" href="cici_pm_portfolio_bold_black_orange.html">← 返回作品集</a>
+    <a class="back-btn" href="index.html">← 返回作品集</a>
   </div>
 </header>
 
@@ -203,10 +203,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
         <span style="font-size:10px;font-weight:950;color:var(--orange);letter-spacing:.12em;text-transform:uppercase;">Platform Architecture</span>
         <span style="font-size:11px;color:var(--muted);">Radar 故障管理平台全景架构</span>
       </div>
-      <img src="images/radar_arch.png" alt="Radar 故障管理平台架构图" style="width:100%;max-width:500px;display:block;margin:0 auto;cursor:zoom-in;transition:transform .2s" onclick="document.getElementById('arch-lightbox').style.display='flex'" />
+      <img src="radar_arch.png" alt="Radar 故障管理平台架构图" style="width:100%;max-width:500px;display:block;margin:0 auto;cursor:zoom-in;transition:transform .2s" onclick="document.getElementById('arch-lightbox').style.display='flex'" />
       <!-- Lightbox -->
       <div id="arch-lightbox" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-        <img src="images/radar_arch.png" alt="Radar 故障管理平台架构图" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+        <img src="radar_arch.png" alt="Radar 故障管理平台架构图" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
       </div>
     </div>
   </section>
@@ -300,176 +300,384 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
         <!-- 01 Warroom 投屏全览 -->
         <div style="margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
           <div style="cursor:zoom-in" onclick="document.getElementById('lb-warroom').style.display='flex'">
-            <img src="images/组 3282@1.5x.png" alt="Warroom 投屏全览" style="width:100%;display:block;max-height:280px;object-fit:cover;object-position:top" />
+            <img src="组 3282@1.5x.png" alt="Warroom 投屏全览" style="width:100%;display:block" />
           </div>
           <div style="padding:16px 20px 18px">
             <div class="feat-label" style="margin-bottom:6px">01 · Warroom 投屏全览</div>
-            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">整合处理流程指引、核心大盘指标、影响范围、任务列表、告警收敛与时间线，形成可多角色共用的投屏故障处理主页。<strong style="color:var(--text)">我的核心价值：</strong>从0到1定义投屏页信息架构，基于三类角色（关键处理角色 / 被影响方 / 管理者）的差异化信息需求，设计分区聚焦的页面布局，让总指挥无需在多系统间切换，10分钟内说清"多大影响、多久恢复"。</p>
+            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">整合处理流程指引、核心大盘指标、影响范围、任务列表、告警收敛与时间线，形成可多角色共用的投屏故障处理主页。<br><strong style="color:var(--text);display:inline-block;margin-top:8px">方案：</strong> 从0到1定义投屏页信息架构，基于三类角色（关键处理角色 / 被影响方 / 管理者）的差异化信息需求，设计分区聚焦的页面布局，让总指挥无需在多系统间切换，10分钟内说清"多大影响、多久恢复"。</p>
           </div>
           <div id="lb-warroom" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="images/组 3282@1.5x.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img src="组 3282@1.5x.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
         </div>
 
         <!-- 02 处理流程指引 -->
-        <div style="margin-bottom:20px;border-radius:16px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card);padding:16px 20px 18px">
-          <div class="feat-label" style="margin-bottom:6px">02 · 处理流程指引</div>
-          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">按事件等级（E 事件 / S9+）展示标准化处理步骤，会议管理、预估定级、故障通告等关键动作随执行自动更新状态；评估影响、任务拆分等节点需角色手动确认。<strong style="color:var(--text)">我的核心价值：</strong>将 SRE 团队沉淀的总指挥/协控必做 List 可视化为流程引导，确保基础动作不因人员差异而遗漏，降低对个人经验的依赖。</p>
+        <div style="margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line)">
+            <div style="overflow:hidden;border-right:1px solid var(--line)">
+              <img src="flow_guide.png" alt="处理流程指引" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-flow1').style.display='flex'" />
+              <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">处理流程指引 · 步骤可视化</div>
+            </div>
+            <div style="overflow:hidden">
+              <img src="flow_yupan.png" alt="故障止损预案" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-flow2').style.display='flex'" />
+              <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">故障止损 · 预案推荐</div>
+            </div>
+          </div>
+          <div style="padding:16px 20px 18px">
+            <div class="feat-label" style="margin-bottom:6px">02 · 处理流程指引</div>
+            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">按事件等级（E 事件 / S9+）展示标准化处理步骤，会议管理、预估定级、故障通告等关键动作随执行自动更新状态；评估影响、任务拆分等节点需角色手动确认。<br><strong style="color:var(--text);display:inline-block;margin-top:8px">方案：</strong> 将 SRE 团队沉淀的总指挥/协控必做 List 可视化为流程引导，确保基础动作不因人员差异而遗漏，降低对个人经验的依赖。</p>
+          </div>
+          <div id="lb-flow1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+            <img src="flow_guide.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+          </div>
+          <div id="lb-flow2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+            <img src="flow_yupan.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+          </div>
         </div>
 
         <!-- 03 时间线 -->
         <div style="margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line)">
             <div style="overflow:hidden;border-right:1px solid var(--line)">
-              <img src="images/74c9a44713fa800ac0d7edc7e794f035353556.png" alt="时间线处理视图" style="width:100%;display:block;max-height:200px;object-fit:cover;object-position:top;cursor:zoom-in" onclick="document.getElementById('lb-timeline1').style.display='flex'" />
+              <img src="74c9a44713fa800ac0d7edc7e794f035353556.png" alt="时间线处理视图" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-timeline1').style.display='flex'" />
               <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">处理视图 · 关键节点 + 指标趋势</div>
             </div>
             <div style="overflow:hidden">
-              <img src="images/2d55f944ac07136fccfe1121a0c3a22f1084251.png" alt="时间线管理视图" style="width:100%;display:block;max-height:200px;object-fit:cover;object-position:top;cursor:zoom-in" onclick="document.getElementById('lb-timeline2').style.display='flex'" />
+              <img src="timeline_manage.png" alt="时间线管理视图" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-timeline2').style.display='flex'" />
               <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">管理视图 · 操作追踪 + AI 分析入口</div>
             </div>
           </div>
           <div style="padding:16px 20px 18px">
             <div class="feat-label" style="margin-bottom:6px">03 · 时间线（处理视图 + 管理视图）</div>
-            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">处理视图：以时间轴串联发生/发现、创建雷达、通告、定级、总指挥签到、完成止损等关键节点，叠加告警量趋势与核心大盘指标，处理人一眼掌握进展与指标走势。管理视图：右侧聚合所有操作记录（指派、通告、会议、变更等）并提供 AI 智能分析入口。<strong style="color:var(--text)">我的核心价值：</strong>重构时间线信息层级，将原本分散在多处的故障上下文整合为一个可追溯的完整叙事，让管理者无需问人即可获取现状。</p>
+            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">处理视图：以时间轴串联发生/发现、创建雷达、通告、定级、总指挥签到、完成止损等关键节点，叠加告警量趋势与核心大盘指标，处理人一眼掌握进展与指标走势。管理视图：右侧聚合所有操作记录（指派、通告、会议、变更等）并提供 AI 智能分析入口。<br><strong style="color:var(--text);display:inline-block;margin-top:8px">方案：</strong> 重构时间线信息层级，将原本分散在多处的故障上下文整合为一个可追溯的完整叙事，让管理者无需问人即可获取现状。</p>
           </div>
           <div id="lb-timeline1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="images/74c9a44713fa800ac0d7edc7e794f035353556.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img src="74c9a44713fa800ac0d7edc7e794f035353556.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
           <div id="lb-timeline2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="images/2d55f944ac07136fccfe1121a0c3a22f1084251.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img src="timeline_manage.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
         </div>
 
         <!-- 04 影响范围 -->
         <div style="margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line)">
-            <div style="overflow:hidden;border-right:1px solid var(--line)">
-              <img src="images/fad496db07fbb494a1e0aeeeda3e021c155522.png" alt="影响范围填报" style="width:100%;display:block;max-height:200px;object-fit:cover;object-position:top;cursor:zoom-in" onclick="document.getElementById('lb-impact1').style.display='flex'" />
-              <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">影响范围填报 · 结构化上报</div>
-            </div>
-            <div style="overflow:hidden">
-              <img src="images/3727ecffd23f99262a7676d626a8a90d666249.png" alt="影响范围总览" style="width:100%;display:block;max-height:200px;object-fit:cover;object-position:top;cursor:zoom-in" onclick="document.getElementById('lb-impact2').style.display='flex'" />
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line);align-items:stretch">
+            <div style="overflow:hidden;border-right:1px solid var(--line);display:flex;flex-direction:column">
+              <img src="3727ecffd23f99262a7676d626a8a90d666249.png" alt="影响范围总览" style="width:100%;display:block;flex:1;object-fit:cover;cursor:zoom-in" onclick="document.getElementById('lb-impact2').style.display='flex'" />
               <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">影响范围总览 · AI 摘要 + 全局止损进度</div>
+            </div>
+            <div style="overflow:hidden;display:flex;flex-direction:column">
+              <img src="fad496db07fbb494a1e0aeeeda3e021c155522.png" alt="影响范围填报" style="width:100%;display:block;flex:1;object-fit:cover;cursor:zoom-in" onclick="document.getElementById('lb-impact1').style.display='flex'" />
+              <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">影响范围填报 · 结构化上报</div>
             </div>
           </div>
           <div style="padding:16px 20px 18px">
             <div class="feat-label" style="margin-bottom:6px">04 · 影响范围填报 &amp; 总览</div>
-            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">受影响方结构化填写：业务影响描述、被影响监控指标（如订单量）、受影响服务 Appkey，并标注恢复状态。总览汇总全部业务/组件的告警数、AI 分析摘要、处理 SRE 与恢复进度。<strong style="color:var(--text)">我的核心价值：</strong>将原本散落在群聊中的影响上报收敛为结构化数据，AI 自动生成影响摘要，总指挥无需逐个询问即可全局感知止损进度，大幅降低信息收集成本。</p>
+            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">受影响方结构化填写：业务影响描述、被影响监控指标（如订单量）、受影响服务 Appkey，并标注恢复状态。总览汇总全部业务/组件的告警数、AI 分析摘要、处理 SRE 与恢复进度。<br><strong style="color:var(--text);display:inline-block;margin-top:8px">方案：</strong> 将原本散落在群聊中的影响上报收敛为结构化数据，AI 自动生成影响摘要，总指挥无需逐个询问即可全局感知止损进度，大幅降低信息收集成本。</p>
           </div>
           <div id="lb-impact1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="images/fad496db07fbb494a1e0aeeeda3e021c155522.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img src="fad496db07fbb494a1e0aeeeda3e021c155522.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
           <div id="lb-impact2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="images/3727ecffd23f99262a7676d626a8a90d666249.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img src="3727ecffd23f99262a7676d626a8a90d666249.png" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
         </div>
       </div>
 
-      <!-- 告警降噪 -->
-      <div class="tab-panel" id="tab-alert">
-        <div class="tp-header">
-          <div class="tp-summary">建立五层降噪机制，让监控平台专注监控，Radar 专注通知策略，SRE 只接收真正需要关注的告警，告警噪音减少 50%+。</div>
-        </div>
-        <div class="cards-2col" style="margin-top:20px">
-          <div class="card">
-            <div class="card-icon">🔀</div>
-            <h3>对监控平台的价值</h3>
-            <p>划清边界：监控平台专注监控规则与异常判断，不再管理通知方式和通知人。AC 统一管理通知策略并执行通知动作，让告警触达用户，两侧职责清晰分离。</p>
+<!-- 告警降噪 -->
+<div class="tab-panel" id="tab-alert">
+
+<!-- 背景现状 -->
+<div class="tp-header">
+<div class="tp-summary">
+  美团日均告警量约 <strong style="color:var(--text)">97 万条</strong>，全公司全月告警量超 <strong style="color:var(--text)">1000 万条</strong>，其中 Radar 告警占比约 50%，AC 告警中心作为全公司告警收发枢纽，24 小时有 COE 值班跟进。告警信息经由大象、短信、电话三大通道触达 SRE，但随业务规模扩大，告警量持续增长，带来三大核心痛点：<br><br>
+  <span style="color:var(--orange);font-weight:800">① 噪声多</span>：告警触达率高但有效率低，SRE 被大量无效告警淹没，真正需要干预的信号被掩盖；<br>
+  <span style="color:var(--orange);font-weight:800">② 事件多</span>：告警直接触发雷达事件生成，无效告警产生大量低置信度事件，值班人员处理负担重；<br>
+  <span style="color:var(--orange);font-weight:800">③ 处理慢</span>：告警→事件→故障链路长，分级分派不清晰，导致响应滞后，影响 MTTR。<br><br>
+  <strong style="color:var(--text)">告警降噪的核心价值</strong>不只是减少通知量，更在于提升告警的有效信号比，从而减少无效雷达事件的产生，让值班 SRE 能聚焦真正高优的问题，大幅提升故障处理效率。
+</div>
+</div>
+
+<!-- 背景图：告警整体架构 -->
+<div style="margin:20px 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
+  <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-bg-overview').style.display='flex'">
+    <img src="alert_bg_overview.png" style="width:100%;display:block" alt="告警降噪整体架构">
+  </div>
+  <div style="padding:12px 20px 14px;border-top:1px solid var(--line)">
+    <div class="feat-label" style="margin-bottom:4px">告警处理全链路架构</div>
+    <p style="font-size:12px;color:var(--muted);line-height:1.7;margin:0">告警从监控平台生成，经 AC 告警中心接收、降噪、发送后，通过消息网关触达值班 SRE；同时触发雷达事件生成链路，进入 COE 处理流程。</p>
+  </div>
+</div>
+<div id="lb-bg-overview" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+  <img src="alert_bg_overview.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+</div>
+
+<!-- 背景图：事件降噪链路 -->
+<div style="margin:0 0 20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
+  <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-bg-incident').style.display='flex'">
+    <img src="alert_bg_incident.png" style="width:100%;display:block" alt="雷达事件生成链路">
+  </div>
+  <div style="padding:12px 20px 14px;border-top:1px solid var(--line)">
+    <div class="feat-label" style="margin-bottom:4px">雷达事件生成链路 & 降噪策略</div>
+    <p style="font-size:12px;color:var(--muted);line-height:1.7;margin:0">告警通过用户规则、系统规则、API调用、手动创建四种方式生成雷达事件。用户规则生成产生约 <strong style="color:var(--text)">80% 的无效事件</strong>，是事件降噪的核心突破口；通过识别低置信度规则、推动用户合理化配置，可显著提升事件的准确率与召回率。</p>
+  </div>
+</div>
+<div id="lb-bg-incident" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+  <img src="alert_bg_incident.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+</div>
+
+        <!-- 目标 -->
+        <div style="margin:20px 0 0">
+          <div class="tp-block-title">目标</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+            <div style="background:rgba(255,92,36,.05);border:1px solid rgba(255,92,36,.15);border-radius:14px;padding:18px 20px">
+              <div style="font-size:12px;font-weight:900;color:var(--orange);margin-bottom:8px">【告警降噪】</div>
+              <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.8">在告警信息不丢失、触达不延迟的基础上，降低告警噪声，结合运营动作提升告警质量。</p>
+            </div>
+            <div style="background:rgba(255,92,36,.05);border:1px solid rgba(255,92,36,.15);border-radius:14px;padding:18px 20px">
+              <div style="font-size:12px;font-weight:900;color:var(--orange);margin-bottom:8px">【事件降噪】</div>
+              <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.8">识别低置信度的雷达事件，通过优化事件生成逻辑，持续降低无效事件占比。</p>
+            </div>
           </div>
-          <div class="card">
-            <div class="card-icon">👤</div>
-            <h3>对用户的价值</h3>
-            <p>一次通知配置变更，可复用于多个监控平台，降低配置成本。支持告警值班机制与升级通知，实现更精准的立即通知和升级通知，提供全局通知配置与监控规则关联关系视图。</p>
-          </div>
+          <p style="font-size:12px;color:var(--muted);margin:12px 0 0;line-height:1.7;opacity:.8">注：在推动告警和事件降噪的同时，也在不断提升业务核心大盘的告警覆盖率，最终在准确率和召回率均达到较高水平。</p>
         </div>
+
         <div class="tp-divider"></div>
-        <div class="tp-block-title">五层降噪机制</div>
+
+        <!-- 做了什么：整体脉络 -->
+        <div class="tp-block-title">方案：三层降噪体系</div>
+        <div style="background:var(--black);border-radius:16px;padding:22px 28px;margin-bottom:20px">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <div style="color:rgba(255,255,255,.45);font-size:12px;font-weight:700">监控指标异常产生告警</div>
+            <div style="color:rgba(255,255,255,.3);font-size:18px">→</div>
+            <div style="background:rgba(255,92,36,.2);border:1px solid rgba(255,92,36,.35);color:var(--orange2);padding:7px 18px;border-radius:999px;font-size:12px;font-weight:800">① 全渠道降噪</div>
+            <div style="color:rgba(255,255,255,.3);font-size:18px">→</div>
+            <div style="background:rgba(255,92,36,.2);border:1px solid rgba(255,92,36,.35);color:var(--orange2);padding:7px 18px;border-radius:999px;font-size:12px;font-weight:800">② 细分渠道策略</div>
+            <div style="color:rgba(255,255,255,.3);font-size:18px">→</div>
+            <div style="background:rgba(255,92,36,.2);border:1px solid rgba(255,92,36,.35);color:var(--orange2);padding:7px 18px;border-radius:999px;font-size:12px;font-weight:800">③ 事件关联抑制</div>
+            <div style="color:rgba(255,255,255,.3);font-size:18px">→</div>
+            <div style="color:rgba(255,255,255,.45);font-size:12px;font-weight:700">用户接收到有效告警</div>
+          </div>
+          <!-- 降噪流程图：放在黑色卡片内 -->
+          <div style="margin-top:18px;border-radius:10px;overflow:hidden;cursor:zoom-in;width:400px" onclick="document.getElementById('lb-denoise-flow').style.display='flex'">
+            <img src="alert_denoise_flow.png" style="width:100%;display:block" alt="AC告警中心降噪流程">
+          </div>
+        </div>
+        <div id="lb-denoise-flow" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+          <img src="alert_denoise_flow.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+        </div>
+
+        <!-- 全渠道五层降噪 -->
+        <div style="margin-bottom:8px;font-size:13px;font-weight:900;color:var(--ink)">① 全渠道降噪 — 五层机制</div>
         <div class="noise-list">
           <div class="noise-item">
             <div class="noise-num">01</div>
             <div class="noise-body">
-              <div class="noise-name">静默规则</div>
-              <p>屏蔽预期内事件导致的无需关注告警，如演练、压测、服务维护期间的告警通知，支持批量静默操作。</p>
-            </div>
-          </div>
+<div class="noise-name">告警静默</div>
+<p>屏蔽预期内事件（演练、压测、维护窗口）导致的无效告警通知。支持事前 N 分钟配置、事中静默至恢复、事中静默 N 分钟三种方式，批量操作，命中规则后告警通知和恢复通知均不发送。</p>
+<div style="display:grid;grid-template-columns:2fr 2fr 1fr;gap:10px;margin-top:12px">
+  <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-silence2').style.display='flex'">
+    <img src="silence_doc.png" style="width:100%;display:block" alt="告警静默功能说明">
+    <div style="padding:6px 10px;font-size:11px;color:var(--muted);background:#fafafa;border-top:1px solid var(--line)">事前/事中静默方式说明</div>
+  </div>
+  <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-silence1').style.display='flex'">
+    <img src="silence_config.png" style="width:100%;display:block" alt="告警静默配置页面">
+    <div style="padding:6px 10px;font-size:11px;color:var(--muted);background:#fafafa;border-top:1px solid var(--line)">静默规则配置</div>
+  </div>
+  <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-silence3').style.display='flex'">
+    <img src="silence_elephant.png" style="width:100%;display:block" alt="大象告警通知样式">
+    <div style="padding:6px 10px;font-size:11px;color:var(--muted);background:#fafafa;border-top:1px solid var(--line)">大象告警通知样式</div>
+  </div>
+</div>
+<!-- lightbox -->
+<div id="lb-silence1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+  <img src="silence_config.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+</div>
+<div id="lb-silence2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+  <img src="silence_doc.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+</div>
+<div id="lb-silence3" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+  <img src="silence_elephant.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+</div>
+</div>
+</div>
           <div class="noise-item">
             <div class="noise-num">02</div>
             <div class="noise-body">
-              <div class="noise-name">抑制规则</div>
-              <p>抑制关联告警通知：A 告警出现时自动屏蔽 B 告警（如同主机 ping.alive 触发时屏蔽 ping.loss），只发主告警。</p>
+              <div class="noise-name">告警抑制</div>
+              <p>抑制由关联告警影响导致的派生通知。A 告警出现时自动屏蔽 B 告警（如同主机 icmp.ping.alive 触发时抑制 icmp.ping.loss），仅发主告警，适用于同时发生且有关联关系的告警。</p>
             </div>
           </div>
           <div class="noise-item">
             <div class="noise-num">03</div>
             <div class="noise-body">
-              <div class="noise-name">聚合规则</div>
-              <p>按时间梯度统一发送符合聚合规则的告警，减少大象通知渠道的重复告警和相关告警对用户的持续干扰。</p>
+              <div class="noise-name">大象告警聚合</div>
+              <p>将同一告警篮的相关告警按时间梯度聚合后统一发出（10s→1min→5min 递进等待），减少大象通知渠道的重复告警及相关告警对用户的持续干扰，支持告警去重、去抖动、关联聚合三种方式。</p>
             </div>
           </div>
           <div class="noise-item">
             <div class="noise-num">04</div>
             <div class="noise-body">
-              <div class="noise-name">大象窗口</div>
-              <p>配置时间窗口内的最大告警接收量，超出上限的告警延后汇总通知，有效遏制短时间内的告警轰炸。</p>
+              <div class="noise-name">告警投递限速</div>
+              <p>按组织、人配置告警等级与投递渠道的单位时间接收阈值。超出阈值后每分钟推送汇总告警信息，不再推送单个告警明细，有效遏制短时间内的告警轰炸，保护 SRE 处理能力。</p>
             </div>
           </div>
           <div class="noise-item">
             <div class="noise-num">05</div>
             <div class="noise-body">
-              <div class="noise-name">告警拒收</div>
-              <p>收到预期外的告警可直接拒收，确保后续不再接收不关注的告警，持续净化个人告警接收列表。</p>
+              <div class="noise-name">告警降速 / 拒收</div>
+              <p>对不需要关注的告警可直接拒收，后续不再接收，持续净化个人告警接收列表。对低优先级告警降速推送，确保真正重要的告警优先触达。</p>
             </div>
           </div>
         </div>
+
+        <!-- 细分渠道 -->
+        <div style="margin:20px 0 8px;font-size:13px;font-weight:900;color:var(--ink)">② 细分渠道降噪策略</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px">
+          <div style="border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--card)">
+            <div style="font-size:12px;font-weight:900;color:var(--orange);margin-bottom:8px">📞 电话快捷屏蔽</div>
+            <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.7">告警风暴场景下，用户接到告警电话后按键「3」，30 分钟内全局静默所有电话告警通知（含告警升级）。避免电话告警轰炸对故障处理过程造成干扰，可在 AC 告警中心随时取消屏蔽。</p>
+          </div>
+          <div style="border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--card)">
+            <div style="font-size:12px;font-weight:900;color:var(--orange);margin-bottom:8px">🐘 大象告警聚合</div>
+            <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.7">AC 接收上游告警后不立即发送，延迟聚合后通知用户。同一告警持续未恢复的通知去重、短时间内反复恢复再触发的去抖动、多条相关告警合并为一条，三种方式综合减少通知频次。</p>
+          </div>
+        </div>
+
+        <!-- 事件关联抑制 -->
+        <div style="margin-bottom:8px;font-size:13px;font-weight:900;color:var(--ink)">③ 事件关联告警抑制</div>
+        <div style="border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--card);margin-bottom:20px">
+          <p style="font-size:13px;color:var(--muted);margin:0 0 10px;line-height:1.7">适用于告警自动生成事件（尤其是雷达自动聚合多告警至同一事件）的场景。关键角色在事件维度抑制告警通知，确保重点关注新告警通知，避免同一事件的重复轰炸。</p>
+          <div style="display:flex;gap:24px;flex-wrap:wrap">
+            <div style="font-size:12px;color:var(--muted)">入口一：事件处理群公告「首次告警后抑制」</div>
+            <div style="font-size:12px;color:var(--muted)">入口二：总指挥响应后，已响应消息中快捷操作「首次告警后抑制」</div>
+            <div style="font-size:12px;color:var(--muted)">操作权限：事件关键角色 · 有效期：添加后至事件恢复或 3 小时</div>
+          </div>
+        </div>
+
+        <!-- 告警降噪效果看板 -->
+        <div style="margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
+          <div style="padding:14px 20px 12px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px">
+            <span style="font-size:13px;font-weight:900;color:var(--ink)">达成结果</span>
+            <span style="font-size:13px;color:var(--muted)">·</span>
+            <span style="font-size:13px;color:var(--muted)">ITU 人日均高等级告警接收量 TP90 持续优化至 <strong style="color:var(--orange)">~60 条</strong></span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+            <div style="overflow:hidden;border-right:1px solid var(--line)">
+              <div style="cursor:zoom-in" onclick="document.getElementById('lb-noise1').style.display='flex'">
+                <img src="result_alert_tp90.png" style="width:100%;display:block" alt="ITU人日均高等级告警接收量TP90">
+              </div>
+              <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">ITU 人日均高等级告警接收量 TP90</div>
+            </div>
+            <div style="overflow:hidden">
+              <div style="cursor:zoom-in" onclick="document.getElementById('lb-noise2').style.display='flex'">
+                <img src="result_phone_limit.png" style="width:100%;display:block" alt="电话限流效果数据">
+              </div>
+              <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">电话限流效果数据</div>
+            </div>
+          </div>
+          <div style="padding:14px 20px;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px">
+            <span style="font-size:13px;color:var(--muted)">全公司有效雷达事件占比提升至</span>
+            <span style="font-size:20px;font-weight:950;color:var(--orange);letter-spacing:-.02em">80%</span>
+          </div>
+          <div id="lb-noise1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+            <img src="result_alert_tp90.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          </div>
+          <div id="lb-noise2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+            <img src="result_phone_limit.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          </div>
+        </div>
+
+
       </div>
 
       <!-- Radar-Agent -->
       <div class="tab-panel" id="tab-agent">
+
+        <!-- 现状分析 -->
         <div class="tp-header">
-          <div class="tp-summary">解决事件群 AI 竞态问题，将 10+ 个 AI 机器人收敛为统一可信入口。用渐进式分层输出，30s 给出方向，2min 给出完整报告。</div>
+          <div class="tp-summary">从"独立工具"建设走向<strong style="color:var(--text)">「自动流转的处理链路」</strong>——将告警研判、诊断定位、止损执行、协同管理、COE复盘五大环节数据打通，让 AI 成为故障响应的唯一信息中枢。</div>
         </div>
-        <div class="cards-2col" style="margin-top:20px">
-          <div class="card">
-            <div class="card-icon">⚔️</div>
-            <h3>核心矛盾：速度 vs 准确性</h3>
-            <p>故障每多持续 1 分钟，业务损失就在累积——需要快。但错误诊断可能导致错误止损，让问题更严重——需要准。人类专家能做到又快又准，但无法 7×24 在线处理多个并发事件。</p>
-          </div>
-          <div class="card dark">
-            <div class="card-icon">🎯</div>
-            <h3 style="color:#fff">产品定位</h3>
-            <p style="color:#a89e94">不是替代人做决策，而是让人在 30 秒内拿到做决策所需的全部信息。当前诊断准确率 55-65%，2026 年目标：成为故障响应的「唯一 AI 信息中枢」，决策权留给人。</p>
+
+        <!-- 当前存在的问题 -->
+        <div style="margin:20px 0 0">
+          <div class="tp-block-title">当前存在的问题</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px">
+            <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px">
+              <div style="font-size:20px;margin-bottom:8px">🤖</div>
+              <div style="font-size:13px;font-weight:900;color:var(--ink);margin-bottom:6px">AI 竞态问题</div>
+              <p style="font-size:12.5px;color:var(--muted);line-height:1.7;margin:0">故障事件群中存在 10+ 个 AI 机器人同时推送信息，内容相互矛盾、互相干扰，SRE 反而更难做决策。</p>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px">
+              <div style="font-size:20px;margin-bottom:8px">⚡</div>
+              <div style="font-size:13px;font-weight:900;color:var(--ink);margin-bottom:6px">速度 vs 准确的核心矛盾</div>
+              <p style="font-size:12.5px;color:var(--muted);line-height:1.7;margin:0">故障每多持续 1 分钟业务损失累积——需要快；但错误诊断导致错误止损——需要准。人类专家能做到，但无法 7×24 并发响应。</p>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px">
+              <div style="font-size:20px;margin-bottom:8px">🔗</div>
+              <div style="font-size:13px;font-weight:900;color:var(--ink);margin-bottom:6px">工具孤岛，链路未打通</div>
+              <p style="font-size:12.5px;color:var(--muted);line-height:1.7;margin:0">各模块（告警/诊断/止损/协同/COE）各自独立，数据不流转，SRE 需要在多个系统间手动跳转，效率低下。</p>
+            </div>
           </div>
         </div>
+
         <div class="tp-divider"></div>
-        <div class="tp-block-title">渐进式分层输出策略</div>
-        <div class="progress-layers">
-          <div class="layer">
-            <div class="layer-tag">第一层 ≤ 30s</div>
-            <div class="layer-title">高置信快速判断</div>
-            <p>输出影响范围概述 + 最近相关变更 + 相似历史事件 + 初步方向（如"高度疑似配置变更引起"）。数据来源：告警聚合 + MCM 变更匹配 + 历史事件向量检索，均为低延迟操作。只说高置信度信息，宁可少说，不说错。</p>
+
+        <!-- 业界做法 -->
+        <div class="tp-block-title">业界做法</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px">
+          <div style="background:rgba(255,92,36,.04);border:1px solid rgba(255,92,36,.15);border-radius:14px;padding:18px 20px">
+            <div style="font-size:12px;font-weight:900;color:var(--orange);margin-bottom:8px">Google SRE</div>
+            <p style="font-size:12.5px;color:var(--muted);line-height:1.7;margin:0">统一的 AlertManager 收敛告警，单一 On-Call 入口，强调 Runbook 自动化执行，减少人工干预链路。</p>
           </div>
-          <div class="layer-arrow">↓</div>
-          <div class="layer">
-            <div class="layer-tag">第二层 ≤ 2min</div>
-            <div class="layer-title">详细诊断报告</div>
-            <p>输出完整根因分析 + Raptor 指标佐证 + 影响面评估 + 止损方案推荐。数据来源：Raptor 多维指标 + 拓扑分析 + LLM 深度推理。追求准确和完整，是 SRE 做决策的主要依据。</p>
+          <div style="background:rgba(255,92,36,.04);border:1px solid rgba(255,92,36,.15);border-radius:14px;padding:18px 20px">
+            <div style="font-size:12px;font-weight:900;color:var(--orange);margin-bottom:8px">PagerDuty / OpsGenie</div>
+            <p style="font-size:12.5px;color:var(--muted);line-height:1.7;margin:0">AI Ops 平台提供单一 AI 助手角色，基于历史事件做相似度匹配和根因推荐，避免多机器人竞态。</p>
           </div>
-          <div class="layer-arrow">↓</div>
-          <div class="layer">
-            <div class="layer-tag">第三层 持续更新</div>
-            <div class="layer-title">动态补充</div>
-            <p>根据止损进展更新影响评估 + 补充新发现的关联信息 + 确认恢复状态。事件是动态的，诊断也不是静态的，持续跟进直至故障闭环。</p>
+          <div style="background:rgba(255,92,36,.04);border:1px solid rgba(255,92,36,.15);border-radius:14px;padding:18px 20px">
+            <div style="font-size:12px;font-weight:900;color:var(--orange);margin-bottom:8px">阿里 / 腾讯</div>
+            <p style="font-size:12.5px;color:var(--muted);line-height:1.7;margin:0">构建统一故障大脑，AI 负责信息聚合与研判，人负责决策与执行，强调"AI 辅助而非替代"，决策权留给人。</p>
           </div>
         </div>
+
         <div class="tp-divider"></div>
-        <div class="tp-block-title">三阶段演进路线</div>
-        <div class="phases" style="margin-top:4px">
+
+        <!-- 产品定位和策略 -->
+        <div class="tp-block-title">产品定位和策略</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+          <div style="background:var(--black);border-radius:14px;padding:20px 22px">
+            <div style="font-size:12px;font-weight:900;color:var(--orange);margin-bottom:10px">🎯 产品定位</div>
+            <p style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.8;margin:0">不是替代人做决策，而是让人在 <strong style="color:#fff">30 秒内</strong>拿到做决策所需的全部信息。当前诊断准确率 55-65%，2026 年目标：成为故障响应的<strong style="color:var(--orange)">「唯一 AI 信息中枢」</strong>，决策权留给人。</p>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px">
+            <div style="font-size:12px;font-weight:900;color:var(--orange);margin-bottom:10px">📐 渐进式分层输出策略</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <span style="background:var(--orange);color:#fff;font-size:10px;font-weight:900;padding:2px 8px;border-radius:999px;white-space:nowrap;margin-top:2px">≤30s</span>
+                <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.6">高置信快速判断：影响范围 + 相关变更 + 相似历史事件 + 初步方向，宁可少说不说错。</p>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <span style="background:var(--orange);color:#fff;font-size:10px;font-weight:900;padding:2px 8px;border-radius:999px;white-space:nowrap;margin-top:2px">≤2min</span>
+                <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.6">完整根因报告：Raptor 指标佐证 + 影响面评估 + 止损方案推荐，是 SRE 决策的主要依据。</p>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <span style="background:rgba(255,92,36,.3);color:var(--orange);font-size:10px;font-weight:900;padding:2px 8px;border-radius:999px;white-space:nowrap;margin-top:2px">持续</span>
+                <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.6">动态补充：随止损进展持续更新，跟进直至故障闭环。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tp-divider"></div>
+
+        <!-- 当前目标 -->
+        <div class="tp-block-title">当前目标</div>
+        <div class="phases" style="margin-top:12px">
           <div class="phase">
             <span class="phase-num">Plan 1</span>
             <div>
               <h3>能力建设 — 成为靠谱的研判助手</h3>
-              <p>稳定 LLM 调用（≥ 99%），告警处理模块从"信息查询"增强为"智能研判"，服务级诊断从 5-8min 降至 ≤ 2min。</p>
+              <p>稳定 LLM 调用（≥99%），告警处理模块从"信息查询"升级为"智能研判"，服务级诊断从 5-8min 降至 ≤2min。诊断准确率达到 55% 基线。</p>
               <div class="metric-list">
                 <div class="m-item"><strong>≥99%</strong>LLM 调用成功率</div>
                 <div class="m-item"><strong>≥70%</strong>告警研判准确率</div>
@@ -478,21 +686,145 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
               </div>
             </div>
           </div>
-          <div class="phase">
-            <span class="phase-num">Plan 2</span>
-            <div>
-              <h3>收敛 — AI 竞态解决 + 事件群信息治理</h3>
-              <p>实现"事件群 AI = 1"，通过试点数据证明"合一"效果更优，获组织支持，与 jarvis、银河团队达成迁移方案。</p>
+        </div>
+
+        <div class="tp-divider"></div>
+
+        <!-- 效果展示：测试案例 -->
+        <div class="tp-block-title">效果展示</div>
+        <div style="margin-top:4px;margin-bottom:16px;border-radius:14px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-agent-table').style.display='flex'">
+          <img src="agent_effect_table.png" style="width:100%;display:block" alt="效果总结表">
+        </div>
+        <div id="lb-agent-table" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+          <img src="agent_effect_table.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+        </div>
+
+        <!-- 案例1：根因分析-流量误报 -->
+        <div style="margin-bottom:16px;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,.05);background:var(--card)">
+          <div style="padding:14px 20px 12px;border-bottom:1px solid var(--line)">
+            <span style="font-size:11px;font-weight:900;color:var(--orange);letter-spacing:.06em">CASE 01</span>
+            <span style="font-size:13px;font-weight:900;color:var(--ink);margin-left:10px">告警根因分析 — 业务流量波动误报识别</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+            <div style="overflow:hidden;border-right:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-case1a').style.display='flex'">
+              <img src="agent_case1_flow.png" style="width:100%;display:block" alt="根因分析-流量波动案例1">
+            </div>
+            <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case1b').style.display='flex'">
+              <img src="agent_case1_flow2.png" style="width:100%;display:block" alt="根因分析-流量波动案例2">
             </div>
           </div>
-          <div class="phase">
-            <span class="phase-num">Plan 3</span>
-            <div>
-              <h3>闭环 — 全链路贯通 + COE 自动生成</h3>
-              <p>四大模块数据打通，形成"告警研判 → 诊断定位 → 止损执行 → 协同管理 → COE 复盘"自动流转。诊断准确率 ≥ 75%，COE 从 2-4 小时缩至自动输出。</p>
-            </div>
+          <div style="padding:12px 20px;border-top:1px solid var(--line)">
+            <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.7">上班高峰期（09:02）流量上涨触发告警，AI 识别为<strong style="color:var(--text)">业务流量自然上涨、非故障</strong>，输出"无需处理"结论并附数据佐证（日环比+92%、周同比+234%），Hulk 自动扩容成功应对。</p>
           </div>
         </div>
+        <div id="lb-case1a" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+          <img src="agent_case1_flow.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+        </div>
+        <div id="lb-case1b" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+          <img src="agent_case1_flow2.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+        </div>
+
+        <!-- 案例2：春节流量恢复误报 -->
+        <div style="margin-bottom:16px;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,.05);background:var(--card)">
+          <div style="padding:14px 20px 12px;border-bottom:1px solid var(--line)">
+            <span style="font-size:11px;font-weight:900;color:var(--orange);letter-spacing:.06em">CASE 02</span>
+            <span style="font-size:13px;font-weight:900;color:var(--ink);margin-left:10px">告警根因分析 — 节假日流量恢复误报</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+            <div style="overflow:hidden;border-right:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-case2a').style.display='flex'">
+              <img src="agent_case2_banner.png" style="width:100%;object-fit:cover;display:block" alt="春节流量恢复banner">
+            </div>
+            <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case2b').style.display='flex'">
+              <img src="agent_case2_result.png" style="width:100%;display:block" alt="春节流量恢复根因结论">
+            </div>
+          </div>
+          <div style="padding:12px 20px;border-top:1px solid var(--line)">
+            <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.7">春节假期结束后开工首日，大量用户密集使用大象 IM，请求量相较节假日日环比上涨 97.11%、周同比 241.96%，AI 正确识别为<strong style="color:var(--text)">节假日基线差异导致的误报</strong>，非真实故障。</p>
+          </div>
+        </div>
+        <div id="lb-case2a" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+          <img src="agent_case2_banner.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+        </div>
+        <div id="lb-case2b" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+          <img src="agent_case2_result.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+        </div>
+
+        <!-- 案例3：故障根因分析 -->
+        <div style="margin-bottom:16px;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,.05);background:var(--card)">
+          <div style="padding:14px 20px 12px;border-bottom:1px solid var(--line)">
+            <span style="font-size:11px;font-weight:900;color:var(--orange);letter-spacing:.06em">CASE 03</span>
+            <span style="font-size:13px;font-weight:900;color:var(--ink);margin-left:10px">故障根因分析 — 酒店交易流量突增（真实故障识别）</span>
+          </div>
+          <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case3').style.display='flex'">
+            <img src="agent_case3_result.png" style="width:100%;display:block" alt="酒店交易流量突增根因分析">
+          </div>
+          <div style="padding:12px 20px;border-top:1px solid var(--line)">
+            <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.7">45 条告警中 44 条为流量波动/环比类，AI 输出完整根因结论：10:00 整点促销触发，历史相似故障置信度 93.5%，变更均为 API 自动化操作已过滤，正确区分<strong style="color:var(--text)">流量压力 vs 真实服务异常</strong>。</p>
+          </div>
+        </div>
+        <div id="lb-case3" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+          <img src="agent_case3_result.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+        </div>
+
+        <!-- 案例4：业务损失评估 -->
+        <div style="margin-bottom:16px;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,.05);background:var(--card)">
+          <div style="padding:14px 20px 12px;border-bottom:1px solid var(--line)">
+            <span style="font-size:11px;font-weight:900;color:var(--orange);letter-spacing:.06em">CASE 04</span>
+            <span style="font-size:13px;font-weight:900;color:var(--ink);margin-left:10px">业务损失评估 — 事件 #3029076</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+            <div style="overflow:hidden;border-right:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-case4a').style.display='flex'">
+              <img src="agent_case4_result.png" style="width:100%;display:block" alt="业务损失评估-3029076">
+            </div>
+            <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case4b').style.display='flex'">
+              <img src="agent_case_loss1.png" style="width:100%;display:block" alt="业务损失详情">
+            </div>
+          </div>
+          <div style="padding:12px 20px;border-top:1px solid var(--line)">
+            <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.7">一句话触发业务损失评估，AI 自动计算损失小结：「下单-请求数」存在损失，绝对损失约 <strong style="color:var(--text)">19773 个订单</strong>，日同比跌幅 0.0635%，综合定级参考 S4，最终定级以 COE 复盘为准。</p>
+          </div>
+        </div>
+        <div id="lb-case4a" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+          <img src="agent_case4_result.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+        </div>
+        <div id="lb-case4b" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+          <img src="agent_case_loss1.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+        </div>
+
+        <!-- 案例5：跨事件业务损失查询 -->
+        <div style="margin-bottom:16px;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,.05);background:var(--card)">
+          <div style="padding:14px 20px 12px;border-bottom:1px solid var(--line)">
+            <span style="font-size:11px;font-weight:900;color:var(--orange);letter-spacing:.06em">CASE 05</span>
+            <span style="font-size:13px;font-weight:900;color:var(--ink);margin-left:10px">跨事件业务损失查询 — 按负责人维度分析</span>
+          </div>
+          <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case5').style.display='flex'">
+            <img src="agent_case5_loss.png" style="width:100%;display:block" alt="跨事件业务损失查询">
+          </div>
+          <div style="padding:12px 20px;border-top:1px solid var(--line)">
+            <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.7">支持按负责人维度查询其近期参与的所有故障事件，并逐一计算业务损失，帮助 SRE 快速盘点自己负责的核心大盘影响情况。</p>
+          </div>
+        </div>
+        <div id="lb-case5" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+          <img src="agent_case5_loss.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+        </div>
+
+        <!-- 案例6：止损预案推荐 -->
+        <div style="margin-bottom:16px;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,.05);background:var(--card)">
+          <div style="padding:14px 20px 12px;border-bottom:1px solid var(--line)">
+            <span style="font-size:11px;font-weight:900;color:var(--orange);letter-spacing:.06em">CASE 06</span>
+            <span style="font-size:13px;font-weight:900;color:var(--ink);margin-left:10px">止损预案推荐 — 事件 #3034437</span>
+          </div>
+          <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case6').style.display='flex'">
+            <img src="agent_case_stopplan.png" style="width:100%;display:block" alt="止损预案推荐">
+          </div>
+          <div style="padding:12px 20px;border-top:1px solid var(--line)">
+            <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.7">基于相似历史事件 + 历史反馈推荐止损预案，根据异常指标「jvm.gc.time」和告警指标「OCTO-ERROR」，推荐<strong style="color:var(--text)">机器重启 + 流量禁用</strong>两步预案，并标注服务扩容建议（12台机器有GC异常）。</p>
+          </div>
+        </div>
+        <div id="lb-case6" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
+          <img src="agent_case_stopplan.png" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+        </div>
+
       </div>
 
     </div>
