@@ -541,8 +541,15 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
 <script>
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.08 });
+}, { threshold: 0.05 });
 document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+// ── 页面加载时立即触发已在视口内的元素
+setTimeout(() => {
+  document.querySelectorAll('.fade-in').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) el.classList.add('in');
+  });
+}, 100);
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
