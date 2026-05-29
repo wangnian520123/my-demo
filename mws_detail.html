@@ -97,7 +97,16 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
 .comp-tag{display:inline-block;font-size:10px;font-weight:900;color:var(--orange);background:rgba(255,92,36,.1);padding:4px 12px;border-radius:999px;white-space:nowrap;text-align:center}
 .comp-title{font-size:14px;font-weight:900;margin-bottom:5px}
 .comp-item p{font-size:12.5px;color:var(--muted);line-height:1.7}
-.comp-thumb{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:8px;border:1px solid var(--line);margin-bottom:8px;display:block}
+.comp-thumb{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:8px;border:1px solid var(--line);margin-bottom:8px;display:block;cursor:zoom-in;transition:opacity .2s}
+.comp-thumb:hover{opacity:.85}
+
+/* LIGHTBOX */
+#lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,8,6,.88);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+#lightbox.open{display:flex}
+#lightbox img{max-width:min(900px,94vw);max-height:90vh;object-fit:contain;border-radius:12px;box-shadow:0 32px 80px rgba(0,0,0,.6);cursor:default;animation:lb-in .22s ease}
+@keyframes lb-in{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+#lb-close{position:fixed;top:22px;right:26px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:20px;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s}
+#lb-close:hover{background:rgba(255,255,255,.28)}
 
 /* BEFORE/AFTER */
 .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
@@ -538,6 +547,12 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
 
 <div style="text-align:center;padding:26px 0;font-size:11px;color:#bbb">© 2025 Cici Zhang · 张秀娟 · All Rights Reserved</div>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
+  <button id="lb-close" aria-label="关闭">✕</button>
+  <img id="lb-img" src="" alt="" />
+</div>
+
 <script>
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
@@ -550,6 +565,27 @@ setTimeout(() => {
     if (rect.top < window.innerHeight) el.classList.add('in');
   });
 }, 100);
+
+// ── Lightbox
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+function openLb(src, alt) {
+  lbImg.src = src;
+  lbImg.alt = alt || '';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { lbImg.src = ''; }, 300);
+}
+document.querySelectorAll('.comp-thumb').forEach(img => {
+  img.addEventListener('click', () => openLb(img.src, img.alt));
+});
+lb.addEventListener('click', e => { if (e.target === lb || e.target === lbImg) closeLb(); });
+document.getElementById('lb-close').addEventListener('click', closeLb);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
