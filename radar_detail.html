@@ -206,7 +206,7 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
       <img src="radar_arch.jpg?v=2" alt="Radar 故障管理平台架构图" style="width:100%;max-width:500px;display:block;margin:0 auto;cursor:zoom-in;transition:transform .2s" onclick="document.getElementById('arch-lightbox').style.display='flex'" />
       <!-- Lightbox -->
       <div id="arch-lightbox" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-        <img src="radar_arch.jpg?v=2" alt="Radar 故障管理平台架构图" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+        <img loading="lazy" src="radar_arch.jpg?v=2" alt="Radar 故障管理平台架构图" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
       </div>
     </div>
   </section>
@@ -307,7 +307,7 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
             <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">整合处理流程指引、核心大盘指标、影响范围、任务列表、告警收敛与时间线，形成可多角色共用的投屏故障处理主页。<br><strong style="color:var(--text);display:inline-block;margin-top:8px">方案：</strong> 从0到1定义投屏页信息架构，基于三类角色（关键处理角色 / 被影响方 / 管理者）的差异化信息需求，设计分区聚焦的页面布局，让总指挥无需在多系统间切换，10分钟内说清"多大影响、多久恢复"。</p>
           </div>
           <div id="lb-warroom" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="组 3282@1.5x.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img loading="lazy" src="组 3282@1.5x.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
         </div>
 
@@ -315,11 +315,11 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
         <div style="margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line)">
             <div style="overflow:hidden;border-right:1px solid var(--line)">
-              <img src="flow_guide.jpg?v=2" alt="处理流程指引" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-flow1').style.display='flex'" />
+              <img loading="lazy" src="flow_guide.jpg?v=2" alt="处理流程指引" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-flow1').style.display='flex'" />
               <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">处理流程指引 · 步骤可视化</div>
             </div>
             <div style="overflow:hidden">
-              <img src="flow_yupan.jpg?v=2" alt="故障止损预案" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-flow2').style.display='flex'" />
+              <img loading="lazy" src="flow_yupan.jpg?v=2" alt="故障止损预案" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-flow2').style.display='flex'" />
               <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">故障止损 · 预案推荐</div>
             </div>
           </div>
@@ -328,10 +328,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
             <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">按事件等级（E 事件 / S9+）展示标准化处理步骤，会议管理、预估定级、故障通告等关键动作随执行自动更新状态；评估影响、任务拆分等节点需角色手动确认。<br><strong style="color:var(--text);display:inline-block;margin-top:8px">方案：</strong> 将 SRE 团队沉淀的总指挥/协控必做 List 可视化为流程引导，确保基础动作不因人员差异而遗漏，降低对个人经验的依赖。</p>
           </div>
           <div id="lb-flow1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="flow_guide.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img loading="lazy" src="flow_guide.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
           <div id="lb-flow2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="flow_yupan.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img loading="lazy" src="flow_yupan.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
         </div>
 
@@ -339,11 +339,11 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
         <div style="margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line)">
             <div style="overflow:hidden;border-right:1px solid var(--line)">
-              <img src="74c9a44713fa800ac0d7edc7e794f035353556.jpg?v=2" alt="时间线处理视图" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-timeline1').style.display='flex'" />
+              <img loading="lazy" src="74c9a44713fa800ac0d7edc7e794f035353556.jpg?v=2" alt="时间线处理视图" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-timeline1').style.display='flex'" />
               <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">处理视图 · 关键节点 + 指标趋势</div>
             </div>
             <div style="overflow:hidden">
-              <img src="timeline_manage.jpg?v=2" alt="时间线管理视图" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-timeline2').style.display='flex'" />
+              <img loading="lazy" src="timeline_manage.jpg?v=2" alt="时间线管理视图" style="width:100%;display:block;cursor:zoom-in" onclick="document.getElementById('lb-timeline2').style.display='flex'" />
               <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">管理视图 · 操作追踪 + AI 分析入口</div>
             </div>
           </div>
@@ -352,10 +352,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
             <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">处理视图：以时间轴串联发生/发现、创建雷达、通告、定级、总指挥签到、完成止损等关键节点，叠加告警量趋势与核心大盘指标，处理人一眼掌握进展与指标走势。管理视图：右侧聚合所有操作记录（指派、通告、会议、变更等）并提供 AI 智能分析入口。<br><strong style="color:var(--text);display:inline-block;margin-top:8px">方案：</strong> 重构时间线信息层级，将原本分散在多处的故障上下文整合为一个可追溯的完整叙事，让管理者无需问人即可获取现状。</p>
           </div>
           <div id="lb-timeline1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="74c9a44713fa800ac0d7edc7e794f035353556.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img loading="lazy" src="74c9a44713fa800ac0d7edc7e794f035353556.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
           <div id="lb-timeline2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="timeline_manage.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img loading="lazy" src="timeline_manage.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
         </div>
 
@@ -363,11 +363,11 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
         <div style="margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line);align-items:stretch">
             <div style="overflow:hidden;border-right:1px solid var(--line);display:flex;flex-direction:column">
-              <img src="3727ecffd23f99262a7676d626a8a90d666249.jpg?v=2" alt="影响范围总览" style="width:100%;display:block;flex:1;object-fit:cover;cursor:zoom-in" onclick="document.getElementById('lb-impact2').style.display='flex'" />
+              <img loading="lazy" src="3727ecffd23f99262a7676d626a8a90d666249.jpg?v=2" alt="影响范围总览" style="width:100%;display:block;flex:1;object-fit:cover;cursor:zoom-in" onclick="document.getElementById('lb-impact2').style.display='flex'" />
               <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">影响范围总览 · AI 摘要 + 全局止损进度</div>
             </div>
             <div style="overflow:hidden;display:flex;flex-direction:column">
-              <img src="fad496db07fbb494a1e0aeeeda3e021c155522.jpg?v=2" alt="影响范围填报" style="width:100%;display:block;flex:1;object-fit:cover;cursor:zoom-in" onclick="document.getElementById('lb-impact1').style.display='flex'" />
+              <img loading="lazy" src="fad496db07fbb494a1e0aeeeda3e021c155522.jpg?v=2" alt="影响范围填报" style="width:100%;display:block;flex:1;object-fit:cover;cursor:zoom-in" onclick="document.getElementById('lb-impact1').style.display='flex'" />
               <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">影响范围填报 · 结构化上报</div>
             </div>
           </div>
@@ -376,10 +376,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
             <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">受影响方结构化填写：业务影响描述、被影响监控指标（如订单量）、受影响服务 Appkey，并标注恢复状态。总览汇总全部业务/组件的告警数、AI 分析摘要、处理 SRE 与恢复进度。<br><strong style="color:var(--text);display:inline-block;margin-top:8px">方案：</strong> 将原本散落在群聊中的影响上报收敛为结构化数据，AI 自动生成影响摘要，总指挥无需逐个询问即可全局感知止损进度，大幅降低信息收集成本。</p>
           </div>
           <div id="lb-impact1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="fad496db07fbb494a1e0aeeeda3e021c155522.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img loading="lazy" src="fad496db07fbb494a1e0aeeeda3e021c155522.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
           <div id="lb-impact2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="3727ecffd23f99262a7676d626a8a90d666249.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
+            <img loading="lazy" src="3727ecffd23f99262a7676d626a8a90d666249.jpg?v=2" style="max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.5)" />
           </div>
         </div>
       </div>
@@ -401,7 +401,7 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
 <!-- 背景图：告警整体架构 -->
 <div style="margin:20px 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
   <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-bg-overview').style.display='flex'">
-    <img src="alert_bg_overview.jpg?v=2" style="width:100%;display:block" alt="告警降噪整体架构">
+    <img loading="lazy" src="alert_bg_overview.jpg?v=2" style="width:100%;display:block" alt="告警降噪整体架构">
   </div>
   <div style="padding:12px 20px 14px;border-top:1px solid var(--line)">
     <div class="feat-label" style="margin-bottom:4px">告警处理全链路架构</div>
@@ -409,13 +409,13 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
   </div>
 </div>
 <div id="lb-bg-overview" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-  <img src="alert_bg_overview.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+  <img loading="lazy" src="alert_bg_overview.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
 </div>
 
 <!-- 背景图：事件降噪链路 -->
 <div style="margin:0 0 20px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06);background:var(--card)">
   <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-bg-incident').style.display='flex'">
-    <img src="alert_bg_incident.jpg?v=2" style="width:100%;display:block" alt="雷达事件生成链路">
+    <img loading="lazy" src="alert_bg_incident.jpg?v=2" style="width:100%;display:block" alt="雷达事件生成链路">
   </div>
   <div style="padding:12px 20px 14px;border-top:1px solid var(--line)">
     <div class="feat-label" style="margin-bottom:4px">雷达事件生成链路 & 降噪策略</div>
@@ -423,7 +423,7 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
   </div>
 </div>
 <div id="lb-bg-incident" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-  <img src="alert_bg_incident.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+  <img loading="lazy" src="alert_bg_incident.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
 </div>
 
         <!-- 目标 -->
@@ -460,11 +460,11 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
           </div>
           <!-- 降噪流程图：放在黑色卡片内 -->
           <div style="margin-top:18px;border-radius:10px;overflow:hidden;cursor:zoom-in;width:400px" onclick="document.getElementById('lb-denoise-flow').style.display='flex'">
-            <img src="alert_denoise_flow.jpg?v=2" style="width:100%;display:block" alt="AC告警中心降噪流程">
+            <img loading="lazy" src="alert_denoise_flow.jpg?v=2" style="width:100%;display:block" alt="AC告警中心降噪流程">
           </div>
         </div>
         <div id="lb-denoise-flow" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-          <img src="alert_denoise_flow.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          <img loading="lazy" src="alert_denoise_flow.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
         </div>
 
         <!-- 全渠道五层降噪 -->
@@ -477,27 +477,27 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
 <p>屏蔽预期内事件（演练、压测、维护窗口）导致的无效告警通知。支持事前 N 分钟配置、事中静默至恢复、事中静默 N 分钟三种方式，批量操作，命中规则后告警通知和恢复通知均不发送。</p>
 <div style="display:grid;grid-template-columns:2fr 2fr 1fr;gap:10px;margin-top:12px">
   <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-silence2').style.display='flex'">
-    <img src="silence_doc.jpg?v=2" style="width:100%;display:block" alt="告警静默功能说明">
+    <img loading="lazy" src="silence_doc.jpg?v=2" style="width:100%;display:block" alt="告警静默功能说明">
     <div style="padding:6px 10px;font-size:11px;color:var(--muted);background:#fafafa;border-top:1px solid var(--line)">事前/事中静默方式说明</div>
   </div>
   <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-silence1').style.display='flex'">
-    <img src="silence_config.jpg?v=2" style="width:100%;display:block" alt="告警静默配置页面">
+    <img loading="lazy" src="silence_config.jpg?v=2" style="width:100%;display:block" alt="告警静默配置页面">
     <div style="padding:6px 10px;font-size:11px;color:var(--muted);background:#fafafa;border-top:1px solid var(--line)">静默规则配置</div>
   </div>
   <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-silence3').style.display='flex'">
-    <img src="silence_elephant.jpg?v=2" style="width:100%;display:block" alt="大象告警通知样式">
+    <img loading="lazy" src="silence_elephant.jpg?v=2" style="width:100%;display:block" alt="大象告警通知样式">
     <div style="padding:6px 10px;font-size:11px;color:var(--muted);background:#fafafa;border-top:1px solid var(--line)">大象告警通知样式</div>
   </div>
 </div>
 <!-- lightbox -->
 <div id="lb-silence1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-  <img src="silence_config.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+  <img loading="lazy" src="silence_config.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
 </div>
 <div id="lb-silence2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-  <img src="silence_doc.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+  <img loading="lazy" src="silence_doc.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
 </div>
 <div id="lb-silence3" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-  <img src="silence_elephant.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+  <img loading="lazy" src="silence_elephant.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
 </div>
 </div>
 </div>
@@ -565,13 +565,13 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
             <div style="overflow:hidden;border-right:1px solid var(--line)">
               <div style="cursor:zoom-in" onclick="document.getElementById('lb-noise1').style.display='flex'">
-                <img src="result_alert_tp90.jpg?v=2" style="width:100%;display:block" alt="ITU人日均高等级告警接收量TP90">
+                <img loading="lazy" src="result_alert_tp90.jpg?v=2" style="width:100%;display:block" alt="ITU人日均高等级告警接收量TP90">
               </div>
               <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">ITU 人日均高等级告警接收量 TP90</div>
             </div>
             <div style="overflow:hidden">
               <div style="cursor:zoom-in" onclick="document.getElementById('lb-noise2').style.display='flex'">
-                <img src="result_phone_limit.jpg?v=2" style="width:100%;display:block" alt="电话限流效果数据">
+                <img loading="lazy" src="result_phone_limit.jpg?v=2" style="width:100%;display:block" alt="电话限流效果数据">
               </div>
               <div style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 8px;letter-spacing:.03em">电话限流效果数据</div>
             </div>
@@ -581,10 +581,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
             <span style="font-size:20px;font-weight:950;color:var(--orange);letter-spacing:-.02em">80%</span>
           </div>
           <div id="lb-noise1" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="result_alert_tp90.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+            <img loading="lazy" src="result_alert_tp90.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
           </div>
           <div id="lb-noise2" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-            <img src="result_phone_limit.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+            <img loading="lazy" src="result_phone_limit.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
           </div>
         </div>
 
@@ -693,10 +693,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
         <!-- 效果展示：测试案例 -->
         <div class="tp-block-title">效果展示</div>
         <div style="margin-top:4px;margin-bottom:16px;border-radius:14px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-agent-table').style.display='flex'">
-          <img src="agent_effect_table.jpg?v=2" style="width:100%;display:block" alt="效果总结表">
+          <img loading="lazy" src="agent_effect_table.jpg?v=2" style="width:100%;display:block" alt="效果总结表">
         </div>
         <div id="lb-agent-table" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-          <img src="agent_effect_table.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          <img loading="lazy" src="agent_effect_table.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
         </div>
 
         <!-- 案例1：根因分析-流量误报 -->
@@ -707,10 +707,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
             <div style="overflow:hidden;border-right:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-case1a').style.display='flex'">
-              <img src="agent_case1_flow.jpg?v=2" style="width:100%;display:block" alt="根因分析-流量波动案例1">
+              <img loading="lazy" src="agent_case1_flow.jpg?v=2" style="width:100%;display:block" alt="根因分析-流量波动案例1">
             </div>
             <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case1b').style.display='flex'">
-              <img src="agent_case1_flow2.jpg?v=2" style="width:100%;display:block" alt="根因分析-流量波动案例2">
+              <img loading="lazy" src="agent_case1_flow2.jpg?v=2" style="width:100%;display:block" alt="根因分析-流量波动案例2">
             </div>
           </div>
           <div style="padding:12px 20px;border-top:1px solid var(--line)">
@@ -718,10 +718,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
           </div>
         </div>
         <div id="lb-case1a" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-          <img src="agent_case1_flow.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          <img loading="lazy" src="agent_case1_flow.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
         </div>
         <div id="lb-case1b" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-          <img src="agent_case1_flow2.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          <img loading="lazy" src="agent_case1_flow2.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
         </div>
 
         <!-- 案例2：春节流量恢复误报 -->
@@ -732,10 +732,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
             <div style="overflow:hidden;border-right:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-case2a').style.display='flex'">
-              <img src="agent_case2_banner.jpg?v=2" style="width:100%;object-fit:cover;display:block" alt="春节流量恢复banner">
+              <img loading="lazy" src="agent_case2_banner.jpg?v=2" style="width:100%;object-fit:cover;display:block" alt="春节流量恢复banner">
             </div>
             <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case2b').style.display='flex'">
-              <img src="agent_case2_result.jpg?v=2" style="width:100%;display:block" alt="春节流量恢复根因结论">
+              <img loading="lazy" src="agent_case2_result.jpg?v=2" style="width:100%;display:block" alt="春节流量恢复根因结论">
             </div>
           </div>
           <div style="padding:12px 20px;border-top:1px solid var(--line)">
@@ -743,10 +743,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
           </div>
         </div>
         <div id="lb-case2a" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-          <img src="agent_case2_banner.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          <img loading="lazy" src="agent_case2_banner.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
         </div>
         <div id="lb-case2b" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-          <img src="agent_case2_result.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          <img loading="lazy" src="agent_case2_result.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
         </div>
 
         <!-- 案例3：故障根因分析 -->
@@ -756,14 +756,14 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
             <span style="font-size:13px;font-weight:900;color:var(--ink);margin-left:10px">故障根因分析 — 酒店交易流量突增（真实故障识别）</span>
           </div>
           <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case3').style.display='flex'">
-            <img src="agent_case3_result.jpg?v=2" style="width:100%;display:block" alt="酒店交易流量突增根因分析">
+            <img loading="lazy" src="agent_case3_result.jpg?v=2" style="width:100%;display:block" alt="酒店交易流量突增根因分析">
           </div>
           <div style="padding:12px 20px;border-top:1px solid var(--line)">
             <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.7">45 条告警中 44 条为流量波动/环比类，AI 输出完整根因结论：10:00 整点促销触发，历史相似故障置信度 93.5%，变更均为 API 自动化操作已过滤，正确区分<strong style="color:var(--text)">流量压力 vs 真实服务异常</strong>。</p>
           </div>
         </div>
         <div id="lb-case3" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-          <img src="agent_case3_result.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          <img loading="lazy" src="agent_case3_result.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
         </div>
 
         <!-- 案例4：业务损失评估 -->
@@ -774,10 +774,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
             <div style="overflow:hidden;border-right:1px solid var(--line);cursor:zoom-in" onclick="document.getElementById('lb-case4a').style.display='flex'">
-              <img src="agent_case4_result.jpg?v=2" style="width:100%;display:block" alt="业务损失评估-3029076">
+              <img loading="lazy" src="agent_case4_result.jpg?v=2" style="width:100%;display:block" alt="业务损失评估-3029076">
             </div>
             <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case4b').style.display='flex'">
-              <img src="agent_case_loss1.jpg?v=2" style="width:100%;display:block" alt="业务损失详情">
+              <img loading="lazy" src="agent_case_loss1.jpg?v=2" style="width:100%;display:block" alt="业务损失详情">
             </div>
           </div>
           <div style="padding:12px 20px;border-top:1px solid var(--line)">
@@ -785,10 +785,10 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
           </div>
         </div>
         <div id="lb-case4a" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-          <img src="agent_case4_result.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          <img loading="lazy" src="agent_case4_result.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
         </div>
         <div id="lb-case4b" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-          <img src="agent_case_loss1.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          <img loading="lazy" src="agent_case_loss1.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
         </div>
 
         <!-- 案例5：跨事件业务损失查询 -->
@@ -798,14 +798,14 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
             <span style="font-size:13px;font-weight:900;color:var(--ink);margin-left:10px">跨事件业务损失查询 — 按负责人维度分析</span>
           </div>
           <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case5').style.display='flex'">
-            <img src="agent_case5_loss.jpg?v=2" style="width:100%;display:block" alt="跨事件业务损失查询">
+            <img loading="lazy" src="agent_case5_loss.jpg?v=2" style="width:100%;display:block" alt="跨事件业务损失查询">
           </div>
           <div style="padding:12px 20px;border-top:1px solid var(--line)">
             <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.7">支持按负责人维度查询其近期参与的所有故障事件，并逐一计算业务损失，帮助 SRE 快速盘点自己负责的核心大盘影响情况。</p>
           </div>
         </div>
         <div id="lb-case5" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-          <img src="agent_case5_loss.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          <img loading="lazy" src="agent_case5_loss.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
         </div>
 
         <!-- 案例6：止损预案推荐 -->
@@ -815,14 +815,14 @@ section{padding:40px 0;border-bottom:1px solid var(--line)}
             <span style="font-size:13px;font-weight:900;color:var(--ink);margin-left:10px">止损预案推荐 — 事件 #3034437</span>
           </div>
           <div style="overflow:hidden;cursor:zoom-in" onclick="document.getElementById('lb-case6').style.display='flex'">
-            <img src="agent_case_stopplan.jpg?v=2" style="width:100%;display:block" alt="止损预案推荐">
+            <img loading="lazy" src="agent_case_stopplan.jpg?v=2" style="width:100%;display:block" alt="止损预案推荐">
           </div>
           <div style="padding:12px 20px;border-top:1px solid var(--line)">
             <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.7">基于相似历史事件 + 历史反馈推荐止损预案，根据异常指标「jvm.gc.time」和告警指标「OCTO-ERROR」，推荐<strong style="color:var(--text)">机器重启 + 流量禁用</strong>两步预案，并标注服务扩容建议（12台机器有GC异常）。</p>
           </div>
         </div>
         <div id="lb-case6" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out">
-          <img src="agent_case_stopplan.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
+          <img loading="lazy" src="agent_case_stopplan.jpg?v=2" style="max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)">
         </div>
 
       </div>
